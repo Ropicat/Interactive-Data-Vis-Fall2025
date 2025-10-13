@@ -16,5 +16,20 @@
   },
   "engines": {
     "node": ">=18"
-  }
+  },
+  "name": "interactive-data-vis-fall2025",
+  "version": "1.0.0",
+  "description": "This is an [Observable Framework](https://observablehq.com/framework/) app. To install the required dependencies, run:",
+  "main": "observablehq.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/InteractiveDataVis/Interactive-Data-Vis-Fall2025.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/InteractiveDataVis/Interactive-Data-Vis-Fall2025/issues"
+  },
+  "homepage": "https://github.com/InteractiveDataVis/Interactive-Data-Vis-Fall2025#readme"
 }
