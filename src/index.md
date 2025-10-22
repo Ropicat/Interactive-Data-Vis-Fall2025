@@ -35,20 +35,20 @@ const name1 ="Masaru";
 data
 ```
 
-this index markdown is prepared by ${name1}
+this index markdown is prepared by `${name1}`
 
 ```js
 //const value=Math.random()
 const family=["Miya","Rena","Tobo","Ryoko","Masaru"];
 const count=family.length;
 ```
-We are the family of ${count}
+We are the family of `${count}`
 
 ```js
 const cat=view(Inputs.select(["Miya the Fire Queen","Rena the Ice Queen", "Tobo the Lion King", "Ryoko Chief Caretaker", "Masaru the Servant"],{label:"Favorite Nobility:", value: "Miya the Fire Queen"}));
 ```
 
-Type in below My fovorite cat from my personal life is ${cat2}!
+Type in below My fovorite cat from my personal life is `${cat2}`!
 
 ```js
 let cat2=view(Inputs.text());
