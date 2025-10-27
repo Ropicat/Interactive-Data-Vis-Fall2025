@@ -53,3 +53,31 @@ Type in below My fovorite cat from my personal life is `${cat2}`!
 ```js
 let cat2=view(Inputs.text());
 ```
+
+// Histogram: Nectar production → Count
+```js
+import {Plot} from "@observablehq/plot"
+import * as d3 from "d3"
+
+// load nectar values: prefer FileAttachment in the notebook preview, else use a small sample
+const rows = (typeof FileAttachment !== 'undefined')
+  ? await FileAttachment("data/pollinator_activity_data.csv").csv({autoType:true})
+  : [{nectar_production:0.63},{nectar_production:0.53},{nectar_production:1}];
+
+const data = rows
+  .map(r => ({nectar: r.nectar_production == null ? NaN : +r.nectar_production}))
+  .filter(d => !Number.isNaN(d.nectar));
+
+const bins = d3.bin().value(d => d.nectar).thresholds(20)(data);
+
+Plot.plot({
+  x: { label: "Nectar production", tickFormat: d => (d == null ? '' : Number(d).toFixed(2)) },
+  y: { label: "Count" },
+  marks: [
+    Plot.rectY(bins.map(b => ({ x0: b.x0, x1: b.x1, count: b.length })), {
+      x1: "x0", x2: "x1", y: "count", fill: "#4C78A8",
+      title: d => `${Number(d.x0).toFixed(2)}–${Number(d.x1).toFixed(2)}: ${d.count}`
+    })
+  ]
+})
+```
