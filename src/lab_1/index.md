@@ -37,7 +37,7 @@ What follows below are my findings from the Pollinator Data I was able to obtain
 
 ```js
 const pollinators = FileAttachment( // using FileAttachment instead of d3.csv
-  "./data/pollinator_activity_data.csv" // string literal inside the FileAttachment
+  "../data/pollinator_activity_data.csv" // string literal inside the FileAttachment
 ).csv({ autoType: true }); // this is the observable version of `d3.autoType` that you had in the d3.csv
 ```
 
