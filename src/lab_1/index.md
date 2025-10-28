@@ -51,21 +51,30 @@ Plot.plot({
       y: "avg_body_mass_g",
       fill: "pollinator_species",
       r: 4,
-  title: d => `${d.pollinator_species || ''}\nwing: ${d.avg_wing_span_mm == null ? '' : Number(d.avg_wing_span_mm).toFixed(0)}\nmass: ${d.avg_body_mass_g == null ? '' : Number(d.avg_body_mass_g).toFixed(2)}`
+  title: d => `${d.pollinator_species || ''}\nwing: ${d.avg_wing_span_mm == null ? '' : Number(d.avg_wing_span_mm).toFixed(0)}\nmass: ${d.avg_body_mass_g == null ? '' : Number(d.avg_body_mass_g).toFixed(1)}`
     })
   ],
   x: {
     label: "Average Wing Span (mm)",
-    ticks: 5,
-    tickFormat: d => (d == null ? '' : Number(d).toFixed(0)),
-    tickRotate: -45
+    ticks: 4,
+    tickFormat: d => (d == null ? '' : Number(d).toFixed(1)),
+    tickRotate: -45,
+    tickSize: 8,
+    tickPadding: 6
   },
-  y: { label: "Average Body Mass (g)", ticks: 8, tickFormat: d => (d == null ? '' : Number(d).toFixed(0)) },
+  y: { 
+    label: "Average Body Mass (g)", 
+    ticks: 5, 
+    tickFormat: d => (d == null ? '' : Number(d).toFixed(0)),
+    tickSize: 8,
+    tickPadding: 6 
+  },
   color: { legend: true, label: "Species" },
   // increase bottom margin to make room for rotated tick labels
   marginBottom: 80,
-  // slightly larger font for legibility
-  style: { fontSize: "20px" },
+  marginLeft: 70,
+  // larger font for better legibility
+  style: { fontSize: "22px" },
   width: 1400,
   height: 700
 })
@@ -85,7 +94,7 @@ Plot.plot({
     })
   ],
   x: { label: "Average Wing Span (mm)", ticks: 100, tickFormat: d => (d == null ? '' : Number(d).toFixed(0)) },
-  y: { label: "Nectar Production", ticks: 100, tickFormat: d => (d == null ? '' : Number(d).toFixed(0)) },
+  y: { label: "Aggregate Nectar Production", ticks: 100, tickFormat: d => (d == null ? '' : Number(d).toFixed(2)) },
   color: { legend: true, label: "Species" },
   width: 800,
   height: 500
@@ -105,7 +114,7 @@ Plot.plot({
     })
   ],
   x: { label: "Average Body Mass (g)", ticks: 100, tickFormat: d => (d == null ? '' : Number(d).toFixed(0)) },
-  y: { label: "Nectar Production ()", ticks: 100, tickFormat: d => (d == null ? '' : Number(d).toFixed(0)) },
+  y: { label: "Nectar Production ()", ticks: 100, tickFormat: d => (d == null ? '' : Number(d).toFixed(2)) },
   color: { legend: true, label: "Species" },
   width: 800,
   height: 500
@@ -130,7 +139,7 @@ Plot.plot({
     })
   ],
   x: { label: "Visit Count", ticks: 10, tickFormat: d => (d == null ? '' : Number(d).toFixed(0)) },
-  y: { label: "Nectar Production", ticks: 10, tickFormat: d => (d == null ? '' : Number(d).toFixed(0)) },
+  y: { label: "Nectar Production", ticks: 10, tickFormat: d => (d == null ? '' : Number(d).toFixed(2)) },
   color: { legend: true, label: "Groups" },
   width: 800,
   height: 500
@@ -156,7 +165,7 @@ Plot.plot({
     })
   ],
   x: { label: "Temperature", ticks: 10, tickFormat: d => (d == null ? '' : Number(d).toFixed(0)) },
-  y: { label: "Nectar Production", ticks: 10, tickFormat: d => (d == null ? '' : Number(d).toFixed(0)) },
+  y: { label: "Nectar Production", ticks: 10, tickFormat: d => (d == null ? '' : Number(d).toFixed(2)) },
   color: { legend: true, label: "Species" },
   width: 800,
   height: 500
@@ -181,7 +190,7 @@ Plot.plot({
     })
   ],
   x: { label: "Humidity", ticks: 10, tickFormat: d => (d == null ? '' : Number(d).toFixed(0)) },
-  y: { label: "Nectar Production", ticks: 10, tickFormat: d => (d == null ? '' : Number(d).toFixed(0)) },
+  y: { label: "Nectar Production", ticks: 10, tickFormat: d => (d == null ? '' : Number(d).toFixed(2)) },
   color: { legend: true, label: "Weather Condition" },
   width: 800,
   height: 500
@@ -206,7 +215,7 @@ Plot.plot({
     })
   ],
   x: { label: "Temperature", ticks: 10, tickFormat: d => (d == null ? '' : Number(d).toFixed(0)) },
-  y: { label: "Nectar Production", ticks: 10, tickFormat: d => (d == null ? '' : Number(d).toFixed(0)) },
+  y: { label: "Nectar Production", ticks: 10, tickFormat: d => (d == null ? '' : Number(d).toFixed(2)) },
   color: { legend: true, label: "Flower types" },
   width: 800,
   height: 500
@@ -231,7 +240,7 @@ Plot.plot({
 })
 ```
 
-// 9: Histogram WEATHER CONDITION and AGGREGATED NECTAR PRODUCTION Sunny weather may be avoided by the bees??
+// 9: Histogram WEATHER CONDITION and AVERAGE NECTAR PRODUCTION Sunny weather may be avoided by the bees??
 
 ```js
 
@@ -242,7 +251,8 @@ Plot.plot({
     Plot.barY(await pollinators, {
       x: "weather_condition",
       y: "nectar_production",
-      reduce: "mean"
+      reduce: "mean",
+      fill: "#8da0cb"
     }),
 
     Plot.ruleY([0])
@@ -251,7 +261,7 @@ Plot.plot({
 
 ```
 
-// 10: Histogram HUMIDITY and AGGREGATED NECTAR PRODUCTION
+// 10: Histogram HUMIDITY and AVERAGE NECTAR PRODUCTION
 
 
 ```js
@@ -263,7 +273,8 @@ Plot.plot({
     Plot.barY(await pollinators, {
       x: "humidity",
       y: "nectar_production",
-      reduce: "mean"
+      reduce: "mean",
+      fill: "#a8ddb5"
     }),
 
     Plot.ruleY([0])
