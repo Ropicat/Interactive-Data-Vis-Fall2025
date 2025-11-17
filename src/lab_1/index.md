@@ -356,3 +356,23 @@ Plot.plot({
   ]
 })
 ```
+
+```js
+
+import * as Plot from "@observablehq/plot"
+import {bin} from "d3-array"
+
+// Sample data
+const data = [
+  {response_time: 120},
+  {response_time: 300},
+  {response_time: 150},
+  {response_time: 90},
+  {response_time: 200},
+  {response_time: 310}
+]
+
+```
+
+
+

@@ -1,0 +1,50 @@
+## Daily Total Ridership Chart
+
+Chart showing the sum of all stations' ridership for each day.
+
+```js
+// Create daily aggregated data - sum all stations' ridership by date
+const dailyTotalRidership = Array.from(
+  d3.group(incidents_ridership_events_combined, d => d.date),
+  ([date, records]) => ({
+    date: new Date(date),
+    total_daily_ridership: d3.sum(records, d => d.total_ridership)
+  })
+).sort((a, b) => a.date - b.date)
+
+// Show sample of the aggregated data
+console.log("Daily total ridership sample:", dailyTotalRidership.slice(0, 5));
+console.log("Total number of days:", dailyTotalRidership.length);
+```
+
+```js
+// Create chart: Date (X-axis) vs Total Daily Ridership (Y-axis)
+Plot.plot({
+  title: "Total Daily Ridership Across All Stations",
+  subtitle: `Aggregated ridership data from ${dailyTotalRidership.length} days`,
+  width: 1000,
+  height: 500,
+  x: {
+    label: "Date",
+    type: "time"
+  },
+  y: {
+    label: "Total Daily Ridership (All Stations Combined)",
+    grid: true
+  },
+  marks: [
+    Plot.lineY(dailyTotalRidership, {
+      x: "date",
+      y: "total_daily_ridership",
+      stroke: "#2563eb",
+      strokeWidth: 2
+    }),
+    Plot.dot(dailyTotalRidership, {
+      x: "date",
+      y: "total_daily_ridership",
+      fill: "#2563eb",
+      r: 3
+    })
+  ]
+})
+```
