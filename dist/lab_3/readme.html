@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Lab 3: Mayoral Mystery | Interactive Data Visualization (Fall 2025)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="modulepreload" href="../_observablehq/client.609bff7d.js">
+<link rel="modulepreload" href="../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.d2092143.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../_observablehq/client.609bff7d.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Interactive Data Visualization (Fall 2025)</a></li>
+  </ol>
+  <details>
+    <summary>Lab 0: Getting Started</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_0/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_0/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 1: Prolific Pollinators</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_1/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_1/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 2: Subway Staffing</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_2/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_2/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open class="observablehq-section-active">
+    <summary>Lab 3: Mayoral Mystery</summary>
+    <ol>
+    <li class="observablehq-link observablehq-link-active"><a href="./readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="./">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open>
+    <summary>Lab 4: Clearwater Crisis</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_4/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_4/">Dashboard</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#data-context">Data Context</a></li>
+<li class="observablehq-secondary-link"><a href="#nyc-topo-json">NYC TopoJSON</a></li>
+<li class="observablehq-secondary-link"><a href="#campaign-datasets">Campaign Datasets</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="lab-3-mayoral-mystery" tabindex="-1"><a class="observablehq-header-anchor" href="#lab-3-mayoral-mystery">Lab 3: Mayoral Mystery</a></h1>
+<p>The goals for this tutorial are:</p>
+<ul>
+<li>to experiment working with maps and geospatial data</li>
+<li>to build data exploration skillsets with ambiguity</li>
+<li>to iterate with visualizations to discover data insights</li>
+<li>to hone the data → visualization workflow</li>
+</ul>
+<p>The assignment requirements are as follows:</p>
+<ol>
+<li>Create a dashboard in the <code>index.md</code> file using the data provided in the <code>/data</code> folder. Please also include written context for the answers that is supported by visualizations.</li>
+<li>Create <strong>at least two, but no more than four visualizations</strong> with Observable Plot (or d3, if you feel ready for that, but not recommended).</li>
+<li>One of your visualizations <strong>should be a map of the nyc districts</strong> with some data visualized. That data can be points on the map, or a choropleth. The <code>index.md</code> file has some initial work for the geoJSON data to get you started.</li>
+<li>This lab is different in that <strong>you are not obligated to answer any data questions in particular</strong>, but some relevant insights do exist. Since this lab has less structure, here are some questions that you may explore to get you started if you feel lost:
+<ul>
+<li>How did the candidate do, overall? How do the results vary by district? By income level?</li>
+<li>How did people feel about the issues? What other information do the survey responses tell us?</li>
+<li>What was the extent of the Get Out The Vote campaign? Was it successful?</li>
+<li>This candidate would like to run again. What would you suggest for a successful next campaign?</li>
+</ul>
+</li>
+<li>Submit your <a href="#4-set-up-your-github-pages-for-your-deployment">deployed link</a> as a comment on the lab 3 commons post.</li>
+</ol>
+<p>Since this lab doesn't have a set slate of research questions, take time to understand the data, consider what you think is important context for the staff, and present it thougtfully and clearly. As mentioned in the syllabus (pdf in the home page of <a href="https://data73200fall2025.commons.gc.cuny.edu/" target="_blank" rel="noopener noreferrer">commons</a>), for labs 3 and 4, you will be graded on:</p>
+<ul>
+<li>On time submission</li>
+<li>Technical requirements met</li>
+<li>Thoughtful responses to research questions (if applicable)</li>
+<li>Well articulated data presentations (<em>new</em>)</li>
+<li>Design considerations (<em>new</em>)</li>
+</ul>
+<hr>
+<h1 id="data-context" tabindex="-1"><a class="observablehq-header-anchor" href="#data-context">Data Context</a></h1>
+<p>A political campaign has collected data from their recent election cycle and needs analysis to understand their performance. The campaign ran from May through November 2024 across New York City's borough-community districts. The candidate had some exiting momentum, and would like to run again. The campaign needs to know areas in which they succeeded, and areas where they could make changes for next time.</p>
+<p>Some notes:</p>
+<ul>
+<li>Borough-community districts (boro_cd) are coded as 3-digit numbers where the first digit represents the borough (1=Manhattan, 2=Bronx, 3=Brooklyn, 4=Queens, 5=Staten Island)</li>
+<li>Income categories are derived from median household income: Low (&lt;$50,000), Middle ($50,000-$100,000), High (&gt;$100,000)</li>
+<li>Survey responses include both voters and non-voters, with open-ended feedback on campaign effectiveness</li>
+</ul>
+<p>The data has been provided in multiple datasets as CSV files, along with a topojson file of NYC districts.</p>
+<h2 id="nyc-topo-json" tabindex="-1"><a class="observablehq-header-anchor" href="#nyc-topo-json">NYC TopoJSON</a></h2>
+<p>There is a <a href="https://github.com/topojson/topojson?tab=readme-ov-file#topojson" target="_blank" rel="noopener noreferrer">topoJSON</a> file called <code>nyc.json</code> in the data folder. This file is a simplified version of the NYC voting districts geoJSON sourced from NYC open data. Debugging and projecting this data can be fairly advanced, so the file is already imported, converted to geoJSON, and rendered in a plot in the <code>index.md</code> file for you. To make a visualization of this map, you can expand on the existing plot by changing the <code>Plot.geo</code> mark or adding more marks in addition.</p>
+<h2 id="campaign-datasets" tabindex="-1"><a class="observablehq-header-anchor" href="#campaign-datasets">Campaign Datasets</a></h2>
+<h3 id="campaign-events-csv-may-november-2024" tabindex="-1"><a class="observablehq-header-anchor" href="#campaign-events-csv-may-november-2024">campaign_events.csv (May - November 2024)</a></h3>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+<th>Range/Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>event_id</strong></td>
+<td>Integer</td>
+<td>1-130</td>
+<td>Unique identifier for each event</td>
+</tr>
+<tr>
+<td><strong>boro_cd</strong></td>
+<td>Integer</td>
+<td>101-503</td>
+<td>Borough-community district code</td>
+</tr>
+<tr>
+<td><strong>income_category</strong></td>
+<td>Categorical</td>
+<td>Low, Middle, High</td>
+<td>Income classification of the district</td>
+</tr>
+<tr>
+<td><strong>event_type</strong></td>
+<td>Categorical</td>
+<td>6 types</td>
+<td>Community Meeting, Volunteer Training, Rally, Roundtable, Town Hall, Canvassing Kickoff</td>
+</tr>
+<tr>
+<td><strong>event_date</strong></td>
+<td>Date</td>
+<td>2024-05-01 to 2024-11-02</td>
+<td>Date the event was held</td>
+</tr>
+<tr>
+<td><strong>latitude</strong></td>
+<td>Numeric</td>
+<td>40.58-40.90</td>
+<td>Geographic latitude of event location</td>
+</tr>
+<tr>
+<td><strong>longitude</strong></td>
+<td>Numeric</td>
+<td>-74.15 to -73.74</td>
+<td>Geographic longitude of event location</td>
+</tr>
+<tr>
+<td><strong>estimated_attendance</strong></td>
+<td>Integer</td>
+<td>33-296</td>
+<td>Number of attendees at the event</td>
+</tr>
+</tbody>
+</table>
+<h3 id="survey-responses-csv-post-election-survey" tabindex="-1"><a class="observablehq-header-anchor" href="#survey-responses-csv-post-election-survey">survey_responses.csv (Post-Election Survey)</a></h3>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+<th>Range/Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>respondent_id</strong></td>
+<td>Integer</td>
+<td>1-100</td>
+<td>Unique identifier for each respondent</td>
+</tr>
+<tr>
+<td><strong>boro_cd</strong></td>
+<td>Integer</td>
+<td>101-503</td>
+<td>Borough-community district of respondent</td>
+</tr>
+<tr>
+<td><strong>age</strong></td>
+<td>Integer</td>
+<td>25-74</td>
+<td>Age of respondent</td>
+</tr>
+<tr>
+<td><strong>heard_of_candidate</strong></td>
+<td>Categorical</td>
+<td>Yes, No</td>
+<td>Whether respondent was aware of the candidate</td>
+</tr>
+<tr>
+<td><strong>affordable_housing_alignment</strong></td>
+<td>Integer</td>
+<td>1-5</td>
+<td>Agreement with candidate's housing policy (1=strongly disagree, 5=strongly agree)</td>
+</tr>
+<tr>
+<td><strong>public_transit_alignment</strong></td>
+<td>Integer</td>
+<td>1-5</td>
+<td>Agreement with candidate's transit policy</td>
+</tr>
+<tr>
+<td><strong>childcare_support_alignment</strong></td>
+<td>Integer</td>
+<td>1-5</td>
+<td>Agreement with candidate's childcare policy</td>
+</tr>
+<tr>
+<td><strong>small_business_tax_alignment</strong></td>
+<td>Integer</td>
+<td>1-5</td>
+<td>Agreement with candidate's small business policy</td>
+</tr>
+<tr>
+<td><strong>police_reform_alignment</strong></td>
+<td>Integer</td>
+<td>1-5</td>
+<td>Agreement with candidate's police reform policy</td>
+</tr>
+<tr>
+<td><strong>voted</strong></td>
+<td>Categorical</td>
+<td>Yes, No</td>
+<td>Whether respondent voted in the election</td>
+</tr>
+<tr>
+<td><strong>voted_for</strong></td>
+<td>Categorical</td>
+<td>Candidate, Opponent, blank</td>
+<td>Who the respondent voted for (if applicable)</td>
+</tr>
+<tr>
+<td><strong>open_response</strong></td>
+<td>Text</td>
+<td>Free text</td>
+<td>Optional feedback about the campaign</td>
+</tr>
+</tbody>
+</table>
+<h3 id="election-results-csv-election-results-by-district" tabindex="-1"><a class="observablehq-header-anchor" href="#election-results-csv-election-results-by-district">election_results.csv (Election Results by District)</a></h3>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+<th>Range/Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>boro_cd</strong></td>
+<td>Integer</td>
+<td>101-503</td>
+<td>Borough-community district code</td>
+</tr>
+<tr>
+<td><strong>median_household_income</strong></td>
+<td>Integer</td>
+<td>$34,560-$142,890</td>
+<td>Median household income in the district</td>
+</tr>
+<tr>
+<td><strong>income_category</strong></td>
+<td>Categorical</td>
+<td>Low, Middle, High</td>
+<td>Income classification of the district</td>
+</tr>
+<tr>
+<td><strong>total_registered_voters</strong></td>
+<td>Integer</td>
+<td>30,366-49,906</td>
+<td>Number of registered voters in the district</td>
+</tr>
+<tr>
+<td><strong>votes_candidate</strong></td>
+<td>Integer</td>
+<td>7,394-21,328</td>
+<td>Votes received by the candidate</td>
+</tr>
+<tr>
+<td><strong>votes_opponent</strong></td>
+<td>Integer</td>
+<td>4,963-28,347</td>
+<td>Votes received by the opponent</td>
+</tr>
+<tr>
+<td><strong>turnout_rate</strong></td>
+<td>Numeric</td>
+<td>39.56%-84.92%</td>
+<td>Percentage of registered voters who voted</td>
+</tr>
+<tr>
+<td><strong>gotv_doors_knocked</strong></td>
+<td>Integer</td>
+<td>108-7,940</td>
+<td>Number of doors knocked for Get Out The Vote efforts</td>
+</tr>
+<tr>
+<td><strong>candidate_hours_spent</strong></td>
+<td>Integer</td>
+<td>1-28</td>
+<td>Hours the candidate personally spent in the district</td>
+</tr>
+</tbody>
+</table>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="../lab_2/"><span>Dashboard</span></a><a rel="next" href="./"><span>Dashboard</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-12-19T01:24:09">Dec 19, 2025</a>.</div>
+</footer>
+</div>
+</body>
+</html>

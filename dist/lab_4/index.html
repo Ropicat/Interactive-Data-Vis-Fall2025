@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Lab 4: Clearwater Crisis | Interactive Data Visualization (Fall 2025)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="preload" as="style" href="../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="../_observablehq/client.609bff7d.js">
+<link rel="modulepreload" href="../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.d2092143.js">
+<link rel="modulepreload" href="../_npm/d3@7.9.0/e780feca.js">
+<link rel="modulepreload" href="../_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="../_observablehq/stdlib/inputs.a73cd26a.js">
+<link rel="modulepreload" href="../_npm/@observablehq/plot@0.6.17/d761ef9b.js">
+<link rel="modulepreload" href="../_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="../_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="../_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="../_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="../_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="../_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="../_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="../_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="../_npm/d3-delaunay@6.0.4/5ced1d52.js">
+<link rel="modulepreload" href="../_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="../_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="../_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="../_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="../_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="../_npm/d3-format@3.1.0/86074ef6.js">
+<link rel="modulepreload" href="../_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="../_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="../_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="../_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="../_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="../_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="../_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="../_npm/d3-scale@4.0.2/843b6a76.js">
+<link rel="modulepreload" href="../_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="../_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="../_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="../_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="../_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="../_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="../_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="../_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="../_npm/interval-tree-1d@1.0.4/53fe8176.js">
+<link rel="modulepreload" href="../_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="../_npm/delaunator@5.0.1/02d43215.js">
+<link rel="modulepreload" href="../_npm/binary-search-bounds@2.0.5/cbf6ba23.js">
+<link rel="modulepreload" href="../_npm/robust-predicates@3.0.2/aa00730b.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "../_observablehq/client.609bff7d.js";
+import {registerFile} from "../_observablehq/stdlib.d2092143.js";
+
+registerFile("./data/fish_surveys.csv", {"name":"./data/fish_surveys.csv","mimeType":"text/csv","path":"../_file/lab_4/data/fish_surveys.5513fd48.csv","lastModified":1766091608525,"size":4158});
+registerFile("./data/monitoring_stations.csv", {"name":"./data/monitoring_stations.csv","mimeType":"text/csv","path":"../_file/lab_4/data/monitoring_stations.7c081a44.csv","lastModified":1765307489977,"size":278});
+registerFile("./data/suspect_activities.csv", {"name":"./data/suspect_activities.csv","mimeType":"text/csv","path":"../_file/lab_4/data/suspect_activities.957f2509.csv","lastModified":1765307489978,"size":1975});
+registerFile("./data/water_quality.csv", {"name":"./data/water_quality.csv","mimeType":"text/csv","path":"../_file/lab_4/data/water_quality.8d7d698b.csv","lastModified":1765307489979,"size":26191});
+
+define({id: "a67e3f99", inputs: ["FileAttachment"], outputs: ["fishSurveysRaw","monitoringStations","suspectActivities","waterQualityRaw","nearbyEntityMap","fishSurveys","waterQuality"], body: async (FileAttachment) => {
+// Load the four data files
+const fishSurveysRaw = await FileAttachment("./data/fish_surveys.csv").csv({typed: true});
+const monitoringStations = await FileAttachment("./data/monitoring_stations.csv").csv({typed: true});
+const suspectActivities = await FileAttachment("./data/suspect_activities.csv").csv({typed: true});
+const waterQualityRaw = await FileAttachment("./data/water_quality.csv").csv({typed: true});
+
+// Add nearby_entity column to fish surveys based on station_id
+const nearbyEntityMap = {
+  "West": "ChemTech Manufacturing",
+  "South": "Clearwater Fishing Lodge",
+  "North": "Riverside Farm",
+  "East": "Lakewood Resort"
+};
+
+const fishSurveys = fishSurveysRaw.map(d => ({
+  ...d,
+  nearby_entity: nearbyEntityMap[d.station_id] || "Unknown"
+}));
+
+// Add nearby_entity column to water quality based on station_id
+const waterQuality = waterQualityRaw.map(d => ({
+  ...d,
+  nearby_entity: nearbyEntityMap[d.station_id] || "Unknown"
+}));
+return {fishSurveysRaw,monitoringStations,suspectActivities,waterQualityRaw,nearbyEntityMap,fishSurveys,waterQuality};
+}});
+
+define({id: "73b9e4be", inputs: ["display","html","Inputs","fishSurveys","monitoringStations","suspectActivities","waterQuality"], body: (display,html,Inputs,fishSurveys,monitoringStations,suspectActivities,waterQuality) => {
+// Display data summaries
+display(html`<h3>Fish Surveys</h3>`);
+display(Inputs.table(fishSurveys));
+
+display(html`<h3>Monitoring Stations</h3>`);
+display(Inputs.table(monitoringStations));
+
+display(html`<h3>Suspect Activities</h3>`);
+display(Inputs.table(suspectActivities));
+
+display(html`<h3>Water Quality</h3>`);
+display(Inputs.table(waterQuality));
+}});
+
+define({id: "fac9b80b", body: () => {
+// Fish species selector
+// const selectedFish = view(Inputs.select(["Trout", "Bass", "Carp"], {
+//   label: "Select Fish Species",
+//   value: "Trout"
+// }));
+}});
+
+define({id: "b7a6bdbb", inputs: ["view","Inputs"], outputs: ["selectedFish"], body: (view,Inputs) => {
+// Fish species selector
+const selectedFish = view(Inputs.select(["Trout", "Bass", "Carp"], {
+  label: "Select Fish Species",
+  value: "Trout"
+}));
+return {selectedFish};
+}});
+
+define({id: "0ae7d8e9", inputs: ["fishSurveys","selectedFish","d3"], outputs: ["filteredFishData","fishCountByDate"], body: (fishSurveys,selectedFish,d3) => {
+// Filter fish surveys by selected species and aggregate count by date
+const filteredFishData = fishSurveys.filter(d => d.species === selectedFish);
+
+// Group by date and sum counts across all stations
+const fishCountByDate = d3.rollups(
+  filteredFishData,
+  v => d3.sum(v, d => d.count),
+  d => d.date
+).map(([date, count]) => ({date: new Date(date), count}));
+
+// Sort by date
+fishCountByDate.sort((a, b) => a.date - b.date);
+return {filteredFishData,fishCountByDate};
+}});
+
+define({id: "85bebbae", inputs: ["display","Plot","selectedFish","fishCountByDate"], body: (display,Plot,selectedFish,fishCountByDate) => {
+// Line chart for fish count over time
+display(Plot.plot({
+  title: `${selectedFish} Population Over Time`,
+  width: 800,
+  height: 400,
+  x: {
+    label: "Date",
+    type: "time"
+  },
+  y: {
+    label: "Total Count (All Stations)",
+    grid: true
+  },
+  marks: [
+    Plot.lineY(fishCountByDate, {x: "date", y: "count", stroke: "steelblue", strokeWidth: 2}),
+    Plot.dot(fishCountByDate, {x: "date", y: "count", fill: "steelblue"})
+  ]
+}));
+}});
+
+define({id: "c52039ba", inputs: ["view","Inputs"], outputs: ["selectedEntity"], body: (view,Inputs) => {
+// Nearby entity selector (radio buttons)
+const selectedEntity = view(Inputs.radio(
+  ["ChemTech Manufacturing", "Clearwater Fishing Lodge", "Riverside Farm", "Lakewood Resort"],
+  {
+    label: "Select Nearby Entity",
+    value: "ChemTech Manufacturing"
+  }
+));
+return {selectedEntity};
+}});
+
+define({id: "900acefb", inputs: ["fishSurveys","selectedEntity","selectedFish"], outputs: ["filteredFishByEntitySpecies"], body: (fishSurveys,selectedEntity,selectedFish) => {
+// Filter fish surveys by selected entity and species
+const filteredFishByEntitySpecies = fishSurveys.filter(
+  d => d.nearby_entity === selectedEntity && d.species === selectedFish
+);
+return {filteredFishByEntitySpecies};
+}});
+
+define({id: "8c8e8587", inputs: ["display","Plot","selectedFish","selectedEntity","filteredFishByEntitySpecies","d3"], body: (display,Plot,selectedFish,selectedEntity,filteredFishByEntitySpecies,d3) => {
+// Bar chart for average weight by date
+display(Plot.plot({
+  title: `${selectedFish} Average Weight at ${selectedEntity}`,
+  width: 800,
+  height: 400,
+  x: {
+    label: "Date",
+    type: "band",
+    tickRotate: -45
+  },
+  y: {
+    label: "Average Weight (g)",
+    grid: true
+  },
+  marks: [
+    Plot.barY(filteredFishByEntitySpecies, {
+      x: d => d3.timeFormat("%Y-%m-%d")(new Date(d.date)),
+      y: "avg_weight_g",
+      fill: "steelblue",
+      tip: true
+    }),
+    Plot.ruleY([0])
+  ]
+}));
+}});
+
+define({id: "8c29c939", inputs: ["display","Plot","selectedFish","selectedEntity","filteredFishByEntitySpecies","d3"], body: (display,Plot,selectedFish,selectedEntity,filteredFishByEntitySpecies,d3) => {
+// Bar chart for average length by date
+display(Plot.plot({
+  title: `${selectedFish} Average Length at ${selectedEntity}`,
+  width: 800,
+  height: 400,
+  x: {
+    label: "Date",
+    type: "band",
+    tickRotate: -45
+  },
+  y: {
+    label: "Average Length (cm)",
+    grid: true
+  },
+  marks: [
+    Plot.barY(filteredFishByEntitySpecies, {
+      x: d => d3.timeFormat("%Y-%m-%d")(new Date(d.date)),
+      y: "avg_length_cm",
+      fill: "steelblue",
+      tip: true
+    }),
+    Plot.ruleY([0])
+  ]
+}));
+}});
+
+define({id: "c3ef6bbf", inputs: ["filteredFishByEntitySpecies"], outputs: ["sortedFishData","fishCountWithChange"], body: (filteredFishByEntitySpecies) => {
+// Prepare data with month-over-month comparison for coloring
+const sortedFishData = [...filteredFishByEntitySpecies].sort((a, b) => new Date(a.date) - new Date(b.date));
+
+const fishCountWithChange = sortedFishData.map((d, i) => {
+  const prevCount = i > 0 ? sortedFishData[i - 1].count : d.count;
+  const percentChange = (d.count - prevCount) / prevCount;
+  const declined = percentChange < -0.10; // More than 10% decline
+  return {
+    ...d,
+    declined
+  };
+});
+return {sortedFishData,fishCountWithChange};
+}});
+
+define({id: "01274cdf", inputs: ["display","Plot","selectedFish","selectedEntity","fishCountWithChange","d3"], body: (display,Plot,selectedFish,selectedEntity,fishCountWithChange,d3) => {
+// Bar chart for fish count by date with conditional coloring
+display(Plot.plot({
+  title: `${selectedFish} Count at ${selectedEntity}`,
+  width: 800,
+  height: 400,
+  x: {
+    label: "Date",
+    type: "band",
+    tickRotate: -45
+  },
+  y: {
+    label: "Count",
+    grid: true
+  },
+  color: {
+    domain: [false, true],
+    range: ["steelblue", "red"]
+  },
+  marks: [
+    Plot.barY(fishCountWithChange, {
+      x: d => d3.timeFormat("%Y-%m-%d")(new Date(d.date)),
+      y: "count",
+      fill: "declined",
+      tip: true
+    }),
+    Plot.ruleY([0])
+  ]
+}));
+}});
+
+define({id: "1e3df004", inputs: ["Inputs","Generators","Event","display"], outputs: ["metricsInput","selectedMetrics"], body: (Inputs,Generators,Event,display) => {
+// Water quality metrics selector (checkboxes - max 2 selections)
+const metricsInput = Inputs.checkbox(
+  ["nitrogen_mg_per_L", "phosphorus_mg_per_L", "heavy_metals_ppb", "turbidity_ntu"],
+  {
+    label: "Select Water Quality Metrics (max 2)",
+    value: ["nitrogen_mg_per_L"]
+  }
+);
+
+// Limit selection to maximum of 2
+const selectedMetrics = Generators.input(metricsInput);
+metricsInput.addEventListener("input", () => {
+  if (metricsInput.value.length > 2) {
+    metricsInput.value = metricsInput.value.slice(-2);
+    metricsInput.dispatchEvent(new Event("input"));
+  }
+});
+display(metricsInput);
+return {metricsInput,selectedMetrics};
+}});
+
+define({id: "16aad39f", inputs: ["waterQuality","selectedEntity","d3"], outputs: ["filteredWaterQuality","waterQualityByMonth"], body: (waterQuality,selectedEntity,d3) => {
+// Filter water quality by selected entity
+const filteredWaterQuality = waterQuality.filter(d => d.nearby_entity === selectedEntity);
+
+// Aggregate water quality data by month (average)
+const waterQualityByMonth = d3.rollups(
+  filteredWaterQuality,
+  v => ({
+    nitrogen_mg_per_L: d3.mean(v, d => d.nitrogen_mg_per_L),
+    phosphorus_mg_per_L: d3.mean(v, d => d.phosphorus_mg_per_L),
+    heavy_metals_ppb: d3.mean(v, d => d.heavy_metals_ppb),
+    turbidity_ntu: d3.mean(v, d => d.turbidity_ntu)
+  }),
+  d => d3.timeMonth(new Date(d.date))
+).map(([date, values]) => ({
+  date,
+  ...values
+})).sort((a, b) => a.date - b.date);
+return {filteredWaterQuality,waterQualityByMonth};
+}});
+
+define({id: "54af95d7", inputs: ["selectedMetrics","d3","waterQualityByMonth"], outputs: ["metric1","metric2","y1Domain","y2Domain","metricLabels"], body: (selectedMetrics,d3,waterQualityByMonth) => {
+// Get selected metrics (default to first two if none selected)
+const metric1 = selectedMetrics[0] || "nitrogen_mg_per_L";
+const metric2 = selectedMetrics[1] || null;
+
+// Calculate domains for dual y-axis scaling
+const y1Domain = d3.extent(waterQualityByMonth, d => d[metric1]);
+const y2Domain = metric2 ? d3.extent(waterQualityByMonth, d => d[metric2]) : null;
+
+// Metric labels for display
+const metricLabels = {
+  nitrogen_mg_per_L: "Nitrogen (mg/L)",
+  phosphorus_mg_per_L: "Phosphorus (mg/L)",
+  heavy_metals_ppb: "Heavy Metals (ppb)",
+  turbidity_ntu: "Turbidity (NTU)"
+};
+return {metric1,metric2,y1Domain,y2Domain,metricLabels};
+}});
+
+define({id: "c7cdf112", inputs: ["display","Plot","selectedEntity","metricLabels","metric1","y1Domain","waterQualityByMonth","metric2","y2Domain","html"], body: (display,Plot,selectedEntity,metricLabels,metric1,y1Domain,waterQualityByMonth,metric2,y2Domain,html) => {
+// Dual-axis line chart for water quality metrics
+display(Plot.plot({
+  title: `Water Quality Metrics at ${selectedEntity} (Monthly Average)`,
+  width: 800,
+  height: 450,
+  x: {
+    label: "Date",
+    type: "time"
+  },
+  y: {
+    label: metricLabels[metric1],
+    grid: true,
+    domain: y1Domain
+  },
+  marks: [
+    // Primary metric line (smoothed with curve)
+    Plot.line(waterQualityByMonth, {
+      x: "date",
+      y: metric1,
+      stroke: "steelblue",
+      strokeWidth: 2,
+      curve: "catmull-rom"
+    }),
+    Plot.dot(waterQualityByMonth, {
+      x: "date",
+      y: metric1,
+      fill: "steelblue",
+      tip: true
+    }),
+    // Secondary metric line (if selected) - scaled to primary axis range
+    ...(metric2 ? [
+      Plot.line(waterQualityByMonth, {
+        x: "date",
+        y: d => {
+          // Scale secondary metric to primary axis range
+          const [y2Min, y2Max] = y2Domain;
+          const [y1Min, y1Max] = y1Domain;
+          return y1Min + ((d[metric2] - y2Min) / (y2Max - y2Min)) * (y1Max - y1Min);
+        },
+        stroke: "orange",
+        strokeWidth: 2,
+        curve: "catmull-rom"
+      }),
+      Plot.dot(waterQualityByMonth, {
+        x: "date",
+        y: d => {
+          const [y2Min, y2Max] = y2Domain;
+          const [y1Min, y1Max] = y1Domain;
+          return y1Min + ((d[metric2] - y2Min) / (y2Max - y2Min)) * (y1Max - y1Min);
+        },
+        fill: "orange",
+        title: d => `${metricLabels[metric2]}: ${d[metric2].toFixed(3)}`
+      })
+    ] : [])
+  ]
+}));
+
+// Display legend and secondary axis info
+display(html`
+  <div style="display: flex; gap: 20px; align-items: center; margin-top: 10px;">
+    <div><span style="color: steelblue;">●</span> ${metricLabels[metric1]}</div>
+    ${metric2 ? html`<div><span style="color: orange;">●</span> ${metricLabels[metric2]} (Range: ${y2Domain[0]?.toFixed(3)} - ${y2Domain[1]?.toFixed(3)})</div>` : ''}
+  </div>
+`);
+}});
+
+define({id: "1d7bf01c", inputs: ["waterQuality","selectedEntity","d3"], outputs: ["otherEntitiesWaterQuality","otherEntitiesWQByMonth"], body: (waterQuality,selectedEntity,d3) => {
+// Filter water quality for OTHER entities (excluding selected)
+const otherEntitiesWaterQuality = waterQuality.filter(d => d.nearby_entity !== selectedEntity);
+
+// Aggregate other entities' water quality data by month (average across all other entities)
+const otherEntitiesWQByMonth = d3.rollups(
+  otherEntitiesWaterQuality,
+  v => ({
+    nitrogen_mg_per_L: d3.mean(v, d => d.nitrogen_mg_per_L),
+    phosphorus_mg_per_L: d3.mean(v, d => d.phosphorus_mg_per_L),
+    heavy_metals_ppb: d3.mean(v, d => d.heavy_metals_ppb),
+    turbidity_ntu: d3.mean(v, d => d.turbidity_ntu)
+  }),
+  d => d3.timeMonth(new Date(d.date))
+).map(([date, values]) => ({
+  date,
+  ...values
+})).sort((a, b) => a.date - b.date);
+return {otherEntitiesWaterQuality,otherEntitiesWQByMonth};
+}});
+
+define({id: "f5a5b066", inputs: ["d3","otherEntitiesWQByMonth","metric1","metric2"], outputs: ["y1DomainOther","y2DomainOther"], body: (d3,otherEntitiesWQByMonth,metric1,metric2) => {
+// Calculate domains for dual y-axis scaling (other entities)
+const y1DomainOther = d3.extent(otherEntitiesWQByMonth, d => d[metric1]);
+const y2DomainOther = metric2 ? d3.extent(otherEntitiesWQByMonth, d => d[metric2]) : null;
+return {y1DomainOther,y2DomainOther};
+}});
+
+define({id: "e999713f", inputs: ["display","Plot","selectedEntity","metricLabels","metric1","y1DomainOther","otherEntitiesWQByMonth","metric2","y2DomainOther","html"], body: (display,Plot,selectedEntity,metricLabels,metric1,y1DomainOther,otherEntitiesWQByMonth,metric2,y2DomainOther,html) => {
+// Dual-axis line chart for water quality metrics (Other Entities Average)
+display(Plot.plot({
+  title: `Water Quality Metrics - Average of Other Entities (Excluding ${selectedEntity})`,
+  width: 800,
+  height: 450,
+  x: {
+    label: "Date",
+    type: "time"
+  },
+  y: {
+    label: metricLabels[metric1],
+    grid: true,
+    domain: y1DomainOther
+  },
+  marks: [
+    // Primary metric line (smoothed with curve)
+    Plot.line(otherEntitiesWQByMonth, {
+      x: "date",
+      y: metric1,
+      stroke: "steelblue",
+      strokeWidth: 2,
+      curve: "catmull-rom"
+    }),
+    Plot.dot(otherEntitiesWQByMonth, {
+      x: "date",
+      y: metric1,
+      fill: "steelblue",
+      tip: true
+    }),
+    // Secondary metric line (if selected) - scaled to primary axis range
+    ...(metric2 ? [
+      Plot.line(otherEntitiesWQByMonth, {
+        x: "date",
+        y: d => {
+          // Scale secondary metric to primary axis range
+          const [y2Min, y2Max] = y2DomainOther;
+          const [y1Min, y1Max] = y1DomainOther;
+          return y1Min + ((d[metric2] - y2Min) / (y2Max - y2Min)) * (y1Max - y1Min);
+        },
+        stroke: "orange",
+        strokeWidth: 2,
+        curve: "catmull-rom"
+      }),
+      Plot.dot(otherEntitiesWQByMonth, {
+        x: "date",
+        y: d => {
+          const [y2Min, y2Max] = y2DomainOther;
+          const [y1Min, y1Max] = y1DomainOther;
+          return y1Min + ((d[metric2] - y2Min) / (y2Max - y2Min)) * (y1Max - y1Min);
+        },
+        fill: "orange",
+        title: d => `${metricLabels[metric2]}: ${d[metric2].toFixed(3)}`
+      })
+    ] : [])
+  ]
+}));
+
+// Display legend and secondary axis info for other entities chart
+display(html`
+  <div style="display: flex; gap: 20px; align-items: center; margin-top: 10px;">
+    <div><span style="color: steelblue;">●</span> ${metricLabels[metric1]}</div>
+    ${metric2 ? html`<div><span style="color: orange;">●</span> ${metricLabels[metric2]} (Range: ${y2DomainOther[0]?.toFixed(3)} - ${y2DomainOther[1]?.toFixed(3)})</div>` : ''}
+  </div>
+`);
+}});
+
+define({id: "11dadc95", inputs: ["waterQualityByMonth","otherEntitiesWQByMonth","d3","metric1","metric2","metricLabels"], outputs: ["differenceData","differenceDataLong"], body: (waterQualityByMonth,otherEntitiesWQByMonth,d3,metric1,metric2,metricLabels) => {
+// Calculate the difference between selectedEntity and average of other entities for each month
+const differenceData = waterQualityByMonth.map((d, i) => {
+  const otherData = otherEntitiesWQByMonth.find(o => o.date.getTime() === d.date.getTime());
+  return {
+    date: d.date,
+    month: d3.timeFormat("%Y-%m")(d.date),
+    diff_metric1: otherData ? (d[metric1] - otherData[metric1]) : 0,
+    diff_metric2: metric2 && otherData ? (d[metric2] - otherData[metric2]) : 0,
+    metric1_name: metric1,
+    metric2_name: metric2
+  };
+});
+
+// Reshape data for grouped bar chart
+const differenceDataLong = differenceData.flatMap(d => [
+  { month: d.month, metric: metricLabels[metric1], difference: d.diff_metric1, metricKey: "metric1" },
+  ...(metric2 ? [{ month: d.month, metric: metricLabels[metric2], difference: d.diff_metric2, metricKey: "metric2" }] : [])
+]);
+return {differenceData,differenceDataLong};
+}});
+
+define({id: "0a5cf7a3", inputs: ["d3","differenceData","metric2"], outputs: ["diff1Extent","diff2Extent","diffY1Domain","diffY2Domain"], body: (d3,differenceData,metric2) => {
+// Calculate domains for the difference chart
+const diff1Extent = d3.extent(differenceData, d => d.diff_metric1);
+const diff2Extent = metric2 ? d3.extent(differenceData, d => d.diff_metric2) : [0, 0];
+
+// Combined extent for primary axis
+const diffY1Domain = [
+  Math.min(diff1Extent[0], 0),
+  Math.max(diff1Extent[1], 0)
+];
+const diffY2Domain = metric2 ? [
+  Math.min(diff2Extent[0], 0),
+  Math.max(diff2Extent[1], 0)
+] : null;
+return {diff1Extent,diff2Extent,diffY1Domain,diffY2Domain};
+}});
+
+define({id: "09dc9c00", inputs: ["display","Plot","selectedEntity","metricLabels","metric1","metric2","differenceData","diffY2Domain","diffY1Domain","html"], body: (display,Plot,selectedEntity,metricLabels,metric1,metric2,differenceData,diffY2Domain,diffY1Domain,html) => {
+// Dual-axis bar chart showing difference between selectedEntity and other entities
+display(Plot.plot({
+  title: `Difference: ${selectedEntity} vs Average of Other Entities`,
+  subtitle: "Positive = Selected Entity Higher, Negative = Other Entities Higher",
+  width: 800,
+  height: 450,
+  x: {
+    label: "Month",
+    type: "band",
+    tickRotate: -45
+  },
+  y: {
+    label: `Δ ${metricLabels[metric1]}`,
+    grid: true
+  },
+  color: {
+    domain: [metricLabels[metric1], ...(metric2 ? [metricLabels[metric2]] : [])],
+    range: ["steelblue", "orange"]
+  },
+  fx: {
+    padding: 0.2
+  },
+  marks: [
+    // Bars for metric 1
+    Plot.barY(differenceData, {
+      x: "month",
+      y: "diff_metric1",
+      fill: "steelblue",
+      dx: metric2 ? -8 : 0,
+      tip: true,
+      title: d => `${metricLabels[metric1]}: ${d.diff_metric1.toFixed(4)}`
+    }),
+    // Bars for metric 2 (if selected) - scaled to primary axis
+    ...(metric2 ? [
+      Plot.barY(differenceData, {
+        x: "month",
+        y: d => {
+          // Scale metric2 difference to metric1 range
+          const [y2Min, y2Max] = diffY2Domain;
+          const [y1Min, y1Max] = diffY1Domain;
+          if (y2Max === y2Min) return 0;
+          return y1Min + ((d.diff_metric2 - y2Min) / (y2Max - y2Min)) * (y1Max - y1Min);
+        },
+        fill: "orange",
+        dx: 8,
+        title: d => `${metricLabels[metric2]}: ${d.diff_metric2.toFixed(4)}`
+      })
+    ] : []),
+    // Zero reference line
+    Plot.ruleY([0], {stroke: "black", strokeWidth: 1})
+  ]
+}));
+
+// Display legend for difference chart
+display(html`
+  <div style="display: flex; gap: 20px; align-items: center; margin-top: 10px;">
+    <div><span style="color: steelblue;">■</span> Δ ${metricLabels[metric1]}</div>
+    ${metric2 ? html`<div><span style="color: orange;">■</span> Δ ${metricLabels[metric2]} (Range: ${diffY2Domain[0]?.toFixed(4)} to ${diffY2Domain[1]?.toFixed(4)})</div>` : ''}
+  </div>
+`);
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Interactive Data Visualization (Fall 2025)</a></li>
+  </ol>
+  <details>
+    <summary>Lab 0: Getting Started</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_0/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_0/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 1: Prolific Pollinators</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_1/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_1/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 2: Subway Staffing</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_2/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_2/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open>
+    <summary>Lab 3: Mayoral Mystery</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_3/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_3/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open class="observablehq-section-active">
+    <summary>Lab 4: Clearwater Crisis</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./readme">Instructions</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./">Dashboard</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<p>// IN THIS EXERCISE, I TRIED TO INCORPORATE THE INTERACTIVE ELEMENTS AS MUCH AS POSSIBLE, SO THAT THE 'READER' OF THESE CHARTS CAN, VIA INTERACTIVE INFORMATION COLLECTION, GRASP THE LIKELIHOOD OF THE CULPIT (CHEMTECH) AND WHICH FISH ARE BEING IMPACTED, TROUT NEGATIVELY, CARP POSITIVELY, AND WHAT WATER_QUALITY ELEMENTS (HEAVY METAL AND TURBIDITY)COULD BE CAUSING THE FISH POPULATION CHANGES.</p>
+<div class="observablehq observablehq--block"><!--:a67e3f99:--></div>
+<div class="observablehq observablehq--block"><!--:73b9e4be:--></div>
+<p>// """"""""""""""""""""""""""""""""""""</p>
+<p>// INTERACTIVITY ONE, PULL DOWN MENU TO PICK A FISH CATEGORY</p>
+<div class="observablehq observablehq--block"><!--:fac9b80b:--></div>
+<div class="observablehq observablehq--block"><!--:b7a6bdbb:--></div>
+<div class="observablehq observablehq--block"><!--:0ae7d8e9:--></div>
+<div class="observablehq observablehq--block"><!--:85bebbae:--></div>
+<p>//'''''''''''''''''''''''''''''''''''''''</p>
+<p>//INTERACTIVITY TWO SELECT NEARBY ENTITY (WHICH ENTITIES ARE VERY CLOSE TO THE WATER AND FISH SAMPLE STATION) THE SELECTION WILL DYNAMICALLY ADJUST THE NEXT THREE CHARTS</p>
+<div class="observablehq observablehq--block"><!--:c52039ba:--></div>
+<div class="observablehq observablehq--block"><!--:900acefb:--></div>
+<div class="observablehq observablehq--block"><!--:8c8e8587:--></div>
+<div class="observablehq observablehq--block"><!--:8c29c939:--></div>
+<div class="observablehq observablehq--block"><!--:c3ef6bbf:--></div>
+<p>//---------------------------------------------</p>
+<p>//BIG NEGATIVE CHANGES IN FISH POPULATION IS RECORDED AS RED COLORED BARS IN BAR CHARTS</p>
+<div class="observablehq observablehq--block"><!--:01274cdf:--></div>
+<p>//,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,</p>
+<p>//INTERACTIVITY THREE: SELECTING THE POSSIBLE CULPIT, BOTH IN TERMS OF ENTITY AND OF THE POLLUTANT, WITH THE LAST CHART ARTICULATING THE CHEMTECH'S NOTICEABLE DIFFERENCES IN POLLUTANT GENERATIONS RELATIVE TO THE OTHER THREE ENTITIES, ESPECIALLY HEAVY METALS AND TURBIDITY</p>
+<div class="observablehq observablehq--block"><!--:1e3df004:--></div>
+<div class="observablehq observablehq--block"><!--:16aad39f:--></div>
+<div class="observablehq observablehq--block"><!--:54af95d7:--></div>
+<div class="observablehq observablehq--block"><!--:c7cdf112:--></div>
+<div class="observablehq observablehq--block"><!--:1d7bf01c:--></div>
+<div class="observablehq observablehq--block"><!--:f5a5b066:--></div>
+<div class="observablehq observablehq--block"><!--:e999713f:--></div>
+<div class="observablehq observablehq--block"><!--:11dadc95:--></div>
+<div class="observablehq observablehq--block"><!--:0a5cf7a3:--></div>
+<div class="observablehq observablehq--block"><!--:09dc9c00:--></div>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./readme"><span>Instructions</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-12-19T01:24:09">Dec 19, 2025</a>.</div>
+</footer>
+</div>
+</body>
+</html>

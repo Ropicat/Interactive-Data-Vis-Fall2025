@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Lab 0: Getting Started | Interactive Data Visualization (Fall 2025)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="preload" as="style" href="../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="../_observablehq/client.609bff7d.js">
+<link rel="modulepreload" href="../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.d2092143.js">
+<link rel="modulepreload" href="../_observablehq/stdlib/inputs.a73cd26a.js">
+<link rel="modulepreload" href="../_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="../_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "../_observablehq/client.609bff7d.js";
+
+define({id: "4380a9e0", inputs: ["alert"], body: (alert) => {
+console.log("Hello, world");
+alert("say it...you love the cats");
+}});
+
+define({id: "b1609de2", outputs: ["data","name1"], body: () => {
+const data =[3,"cats",2,"humans"];
+//display(data);
+const name1 ="Masaru";
+return {data,name1};
+}});
+
+define({id: "6667b2d1", inputs: ["data","display"], body: async (data,display) => {
+display(await(
+data
+))
+}});
+
+define({id: "9367417d", mode: "inline", inputs: ["name1","display"], body: async (name1,display) => {
+display(await(
+name1
+))
+}});
+
+define({id: "548680a1", outputs: ["family","count"], body: () => {
+//const value=Math.random()
+const family=["Miya","Rena","Tobo","Ryoko","Masaru"];
+const count=family.length;
+return {family,count};
+}});
+
+define({id: "6c35493a", mode: "inline", inputs: ["count","display"], body: async (count,display) => {
+display(await(
+count
+))
+}});
+
+define({id: "ceac24dc", inputs: ["view","Inputs"], outputs: ["cat"], body: (view,Inputs) => {
+const cat=view(Inputs.select(["Miya the Fire Queen","Rena the Ice Queen", "Tobo the Lion King", "Ryoko Chief Caretaker", "Masaru the Servant"],{label:"Favorite Nobility:", value: "Miya the Fire Queen"}));
+return {cat};
+}});
+
+define({id: "ec53d7b8", mode: "inline", inputs: ["cat2","display"], body: async (cat2,display) => {
+display(await(
+cat2
+))
+}});
+
+define({id: "df92e8ea", inputs: ["view","Inputs"], outputs: ["cat2"], body: (view,Inputs) => {
+let cat2=view(Inputs.text());
+return {cat2};
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Interactive Data Visualization (Fall 2025)</a></li>
+  </ol>
+  <details open class="observablehq-section-active">
+    <summary>Lab 0: Getting Started</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./readme">Instructions</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 1: Prolific Pollinators</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_1/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_1/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 2: Subway Staffing</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_2/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_2/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open>
+    <summary>Lab 3: Mayoral Mystery</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_3/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_3/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open>
+    <summary>Lab 4: Clearwater Crisis</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_4/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_4/">Dashboard</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<p>This page is where you can iterate. Follow the lab instructions in the <a href="./README.md">readme.md</a>.</p>
+<p>Hello!</p>
+<p><a href="./readme">Lab 0: Getting Started</a></p>
+<div>HELLO FROM THE EMPIRE OF CATS</div>
+<h1>WHERE HUMANS ARE BUT SERVANTS</h1><h1>
+<pre>THE THREE CATS THAT CONTROL ME AND MY WIFE</pre>
+<div class="grid grid-cols-4">
+<h1 class="card">Name and Age and their role</h1>
+<h1 class="card">Miya   14 years Old  FIRE QUEEN</h1>
+<h1 class="card">Rena    3 years Old  ICE EMPRESS</h1>
+<h1 class="card">Tobo    3 years Old  LION KING</h1>
+<div>
+<div class="tip">Think carefully before you make your fateful decision to pick a cat from the list below</div>
+<div class="observablehq observablehq--block"><!--:4380a9e0:--></div>
+<div class="observablehq observablehq--block"><!--:b1609de2:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:6667b2d1:--></div>
+<p>this index markdown is prepared by <observablehq-loading></observablehq-loading><!--:9367417d:--></p>
+<div class="observablehq observablehq--block"><!--:548680a1:--></div>
+<p>We are the family of <observablehq-loading></observablehq-loading><!--:6c35493a:--></p>
+<div class="observablehq observablehq--block"><!--:ceac24dc:--></div>
+<p>Type in below My fovorite cat from my personal life is <observablehq-loading></observablehq-loading><!--:ec53d7b8:-->!</p>
+<div class="observablehq observablehq--block"><!--:df92e8ea:--></div>
+</div></div></h1></main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./readme"><span>Instructions</span></a><a rel="next" href="../lab_1/readme"><span>Instructions</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-12-19T01:24:09">Dec 19, 2025</a>.</div>
+</footer>
+</div>
+</body>
+</html>

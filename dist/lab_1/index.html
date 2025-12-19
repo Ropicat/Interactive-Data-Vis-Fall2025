@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Interactive Data Visualization (Fall 2025)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="modulepreload" href="../_observablehq/client.609bff7d.js">
+<link rel="modulepreload" href="../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.d2092143.js">
+<link rel="modulepreload" href="../_node/@observablehq/plot@0.6.17/index.d66b1832.js">
+<link rel="modulepreload" href="../_node/d3-array@3.2.4/index.f89e3560.js">
+<link rel="modulepreload" href="../_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="../_node/d3@7.9.0/index.8946009e.js">
+<link rel="modulepreload" href="../_node/isoformat@0.2.1/index.0882e9d9.js">
+<link rel="modulepreload" href="../_node/interval-tree-1d@1.0.4/index.eeaa354d.js">
+<link rel="modulepreload" href="../_node/internmap@2.0.3/index.4106013c.js">
+<link rel="modulepreload" href="../_node/d3-axis@3.0.0/index.34ded868.js">
+<link rel="modulepreload" href="../_node/d3-brush@3.0.0/index.76e53644.js">
+<link rel="modulepreload" href="../_node/d3-chord@3.0.1/index.eb7a3f59.js">
+<link rel="modulepreload" href="../_node/d3-color@3.1.0/index.e8c126ff.js">
+<link rel="modulepreload" href="../_node/d3-contour@4.0.2/index.dec5b7e9.js">
+<link rel="modulepreload" href="../_node/d3-delaunay@6.0.4/index.1771ba9f.js">
+<link rel="modulepreload" href="../_node/d3-dispatch@3.0.1/index.be49ca5f.js">
+<link rel="modulepreload" href="../_node/d3-drag@3.0.0/index.d3ae5f0f.js">
+<link rel="modulepreload" href="../_node/d3-dsv@3.0.1/index.48418e2e.js">
+<link rel="modulepreload" href="../_node/d3-ease@3.0.1/index.09153f73.js">
+<link rel="modulepreload" href="../_node/d3-fetch@3.0.1/index.2c1c499d.js">
+<link rel="modulepreload" href="../_node/d3-force@3.0.0/index.952bd793.js">
+<link rel="modulepreload" href="../_node/d3-format@3.1.0/index.da30fb93.js">
+<link rel="modulepreload" href="../_node/d3-geo@3.1.1/index.75f0ca91.js">
+<link rel="modulepreload" href="../_node/d3-hierarchy@3.1.2/index.0a013d9a.js">
+<link rel="modulepreload" href="../_node/d3-interpolate@3.0.1/index.7ed7c7fe.js">
+<link rel="modulepreload" href="../_node/d3-path@3.1.0/index.c2b3c473.js">
+<link rel="modulepreload" href="../_node/d3-polygon@3.0.1/index.32c3d834.js">
+<link rel="modulepreload" href="../_node/d3-quadtree@3.0.1/index.e9fed2eb.js">
+<link rel="modulepreload" href="../_node/d3-random@3.0.1/index.fd2cc361.js">
+<link rel="modulepreload" href="../_node/d3-scale@4.0.2/index.0574410e.js">
+<link rel="modulepreload" href="../_node/d3-scale-chromatic@3.1.0/index.7961cbed.js">
+<link rel="modulepreload" href="../_node/d3-selection@3.0.0/index.13204b25.js">
+<link rel="modulepreload" href="../_node/d3-shape@3.2.0/index.b551bc1c.js">
+<link rel="modulepreload" href="../_node/d3-time@3.1.0/index.8fcc123e.js">
+<link rel="modulepreload" href="../_node/d3-time-format@4.1.0/index.08e7c36a.js">
+<link rel="modulepreload" href="../_node/d3-timer@3.0.1/index.0ee6092b.js">
+<link rel="modulepreload" href="../_node/d3-transition@3.0.1/index.d140d658.js">
+<link rel="modulepreload" href="../_node/d3-zoom@3.0.0/index.78e4486d.js">
+<link rel="modulepreload" href="../_node/binary-search-bounds@2.0.5/index.990a1c6d.js">
+<link rel="modulepreload" href="../_node/delaunator@5.0.1/index.70ae1478.js">
+<link rel="modulepreload" href="../_node/robust-predicates@3.0.2/index.bdc459cc.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "../_observablehq/client.609bff7d.js";
+import {registerFile} from "../_observablehq/stdlib.d2092143.js";
+
+registerFile("../data/pollinator_activity_data.csv", {"name":"../data/pollinator_activity_data.csv","mimeType":"text/csv","path":"../_file/data/pollinator_activity_data.642e594a.csv","lastModified":1760914029701,"size":30180});
+
+define({id: "d64fd700", inputs: ["FileAttachment"], outputs: ["pollinators"], body: (FileAttachment) => {
+const pollinators = FileAttachment( // using FileAttachment instead of d3.csv
+  "../data/pollinator_activity_data.csv" // string literal inside the FileAttachment
+).csv({ autoType: true }); // this is the observable version of `d3.autoType` that you had in the d3.csv
+return {pollinators};
+}});
+
+define({id: "8f7cd407", inputs: ["Plot","pollinators","display"], body: async (Plot,pollinators,display) => {
+display(await(
+Plot.plot({
+  marks: [
+    Plot.dot(await pollinators, {
+      x: "avg_wing_span_mm",
+      y: "avg_body_mass_g",
+      fill: "pollinator_species",
+      r: 4,
+  title: d => `${d.pollinator_species || ''}\nwing: ${d.avg_wing_span_mm == null ? '' : Number(d.avg_wing_span_mm).toFixed(0)}\nmass: ${d.avg_body_mass_g == null ? '' : Number(d.avg_body_mass_g).toFixed(1)}`
+    })
+  ],
+  x: {
+    label: "Average Wing Span (mm)",
+    ticks: 4,
+    tickFormat: d => (d == null ? '' : Number(d).toFixed(1)),
+    tickRotate: -45,
+    tickSize: 8,
+    tickPadding: 6
+  },
+  y: { 
+    label: "Average Body Mass (g)", 
+    ticks: 5, 
+    tickFormat: d => (d == null ? '' : Number(d).toFixed(0)),
+    tickSize: 8,
+    tickPadding: 6 
+  },
+  color: { legend: true, label: "Species" },
+  // increase bottom margin to make room for rotated tick labels
+  marginBottom: 80,
+  marginLeft: 70,
+  // larger font for better legibility
+  style: { fontSize: "22px" },
+  width: 1400,
+  height: 700
+})
+))
+}});
+
+define({id: "1296193f", inputs: ["Plot","pollinators","display"], body: async (Plot,pollinators,display) => {
+display(await(
+Plot.plot({
+  marks: [
+    Plot.dot(await pollinators, {
+      x: "avg_wing_span_mm",
+      y: "nectar_production",
+      fill: "pollinator_species",
+      r: 4,
+  title: d => `${d.pollinator_species || ''}\nwing: ${d.avg_wing_span_mm == null ? '' : Number(d.avg_wing_span_mm).toFixed(0)}\nnect: ${d.nectar_production == null ? '' : Number(d.nectar_production).toFixed(2)}`
+    })
+  ],
+  x: { label: "Average Wing Span (mm)", ticks: 100, tickFormat: d => (d == null ? '' : Number(d).toFixed(0)) },
+  y: { label: "Aggregate Nectar Production", ticks: 100, tickFormat: d => (d == null ? '' : Number(d).toFixed(2)) },
+  color: { legend: true, label: "Species" },
+  width: 800,
+  height: 500
+})
+))
+}});
+
+define({id: "8b0aeaf9", inputs: ["Plot","pollinators","display"], body: async (Plot,pollinators,display) => {
+display(await(
+Plot.plot({
+  marks: [
+    Plot.dot(await pollinators, {
+      x: "avg_body_mass_g",
+      y: "nectar_production",
+      fill: "pollinator_species",
+      r: 4,
+  title: d => `${d.pollinator_species || ''}\nmass: ${d.avg_body_mass_g == null ? '' : Number(d.avg_body_mass_g).toFixed(2)}\nnect: ${d.nectar_production == null ? '' : Number(d.nectar_production).toFixed(2)}`
+    })
+  ],
+  x: { label: "Average Body Mass (g)", ticks: 100, tickFormat: d => (d == null ? '' : Number(d).toFixed(0)) },
+  y: { label: "Nectar Production ()", ticks: 100, tickFormat: d => (d == null ? '' : Number(d).toFixed(2)) },
+  color: { legend: true, label: "Species" },
+  width: 800,
+  height: 500
+})
+))
+}});
+
+define({id: "a0365db2", inputs: ["Plot","pollinators","display"], body: async (Plot,pollinators,display) => {
+display(await(
+Plot.plot({
+  marks: [
+    // coerce numeric fields and map to a clean array so Plot receives numbers
+    Plot.dot((await pollinators).map(d => ({
+      ...d,
+      visit_count: d.visit_count == null ? null : +d.visit_count,
+      nectar_production: d.nectar_production == null ? null : +d.nectar_production
+    })), {
+      x: "visit_count",
+      y: "nectar_production",
+      fill: "pollinator_group",
+      r: 4,
+      title: d => `${d.pollinator_species || ''}\nvisit: ${d.visit_count == null ? '' : d.visit_count}\nnectar: ${d.nectar_production == null ? '' : d.nectar_production}`
+    })
+  ],
+  x: { label: "Visit Count", ticks: 10, tickFormat: d => (d == null ? '' : Number(d).toFixed(0)) },
+  y: { label: "Nectar Production", ticks: 10, tickFormat: d => (d == null ? '' : Number(d).toFixed(2)) },
+  color: { legend: true, label: "Groups" },
+  width: 800,
+  height: 500
+})
+))
+}});
+
+define({id: "21c57e7d", inputs: ["Plot","pollinators","display"], body: async (Plot,pollinators,display) => {
+display(await(
+Plot.plot({
+  marks: [
+    // coerce numeric fields and map to a clean array so Plot receives numbers
+    Plot.dot((await pollinators).map(d => ({
+      ...d,
+      temperature: d.temperature == null ? null : +d.temperature,
+      nectar_production: d.nectar_production == null ? null : +d.nectar_production
+    })), {
+      x: "temperature",
+      y: "nectar_production",
+      fill: "pollinator_species",
+      r: 4,
+      title: d => `${d.pollinator_species || ""}\ntemp: ${d.temperature == null ? "" : d.temperature}\nnectar: ${d.nectar_production == null ? "" : d.nectar_production}`
+    })
+  ],
+  x: { label: "Temperature", ticks: 10, tickFormat: d => (d == null ? '' : Number(d).toFixed(0)) },
+  y: { label: "Nectar Production", ticks: 10, tickFormat: d => (d == null ? '' : Number(d).toFixed(2)) },
+  color: { legend: true, label: "Species" },
+  width: 800,
+  height: 500
+})
+))
+}});
+
+define({id: "779e96fe", inputs: ["Plot","pollinators","display"], body: async (Plot,pollinators,display) => {
+display(await(
+Plot.plot({
+  marks: [
+    // coerce numeric fields and map to a clean array so Plot receives numbers
+    Plot.dot((await pollinators).map(d => ({
+      ...d,
+      humidity: d.humidity == null ? null : +d.humidity,
+      nectar_production: d.nectar_production == null ? null : +d.nectar_production
+    })), {
+      x: "humidity",
+      y: "nectar_production",
+      fill: "weather_condition",
+      r: 4,
+  title: d => `${d.pollinator_species || ''}\nwing: ${d.temperature == null ? '' : d.temperature}\nnectar: ${d.nectar_production == null ? '' : d.nectar_production}`
+    })
+  ],
+  x: { label: "Humidity", ticks: 10, tickFormat: d => (d == null ? '' : Number(d).toFixed(0)) },
+  y: { label: "Nectar Production", ticks: 10, tickFormat: d => (d == null ? '' : Number(d).toFixed(2)) },
+  color: { legend: true, label: "Weather Condition" },
+  width: 800,
+  height: 500
+})
+))
+}});
+
+define({id: "5b97ae25", inputs: ["Plot","pollinators","display"], body: async (Plot,pollinators,display) => {
+display(await(
+Plot.plot({
+  marks: [
+    // coerce numeric fields and map to a clean array so Plot receives numbers
+    Plot.dot((await pollinators).map(d => ({
+      ...d,
+  temperature: d.temperature == null ? null : +d.temperature,
+      nectar_production: d.nectar_production == null ? null : +d.nectar_production
+    })), {
+      x: "temperature",
+      y: "nectar_production",
+      fill: "flower_species",
+      r: 4,
+  title: d => `${d.flower_species|| ''}\nflow: ${d.temperature == null ? '' : d.temperature}\nnectar: ${d.nectar_production == null ? '' : d.nectar_production}`
+    })
+  ],
+  x: { label: "Temperature", ticks: 10, tickFormat: d => (d == null ? '' : Number(d).toFixed(0)) },
+  y: { label: "Nectar Production", ticks: 10, tickFormat: d => (d == null ? '' : Number(d).toFixed(2)) },
+  color: { legend: true, label: "Flower types" },
+  width: 800,
+  height: 500
+})
+))
+}});
+
+define({id: "654442ad", inputs: ["Plot","pollinators","display"], body: async (Plot,pollinators,display) => {
+display(await(
+Plot.plot({
+  x: { label: "Temperature" },
+  y: { label: "Total Nectar Production" },
+  marks: [
+    Plot.barY(await pollinators, {
+      x: "temperature",
+      y: "nectar_production",
+      reduce: "sum"
+    }),
+
+    Plot.ruleY([0])
+  ]
+})
+))
+}});
+
+define({id: "7c686865", inputs: ["Plot","pollinators","display"], body: async (Plot,pollinators,display) => {
+display(await(
+Plot.plot({
+  x: { label: "Weather" },
+  y: { label: "Average Nectar Production" },
+  marks: [
+    Plot.barY(await pollinators, {
+      x: "weather_condition",
+      y: "nectar_production",
+      reduce: "mean",
+      fill: "#8da0cb"
+    }),
+
+    Plot.ruleY([0])
+  ]
+})
+
+))
+}});
+
+define({id: "1bfa1b5b", inputs: ["Plot","pollinators","display"], body: async (Plot,pollinators,display) => {
+display(await(
+Plot.plot({
+  x: { label: "Humidity" },
+  y: { label: "Average Nectar Production" },
+  marks: [
+    Plot.barY(await pollinators, {
+      x: "humidity",
+      y: "nectar_production",
+      reduce: "mean",
+      fill: "#a8ddb5"
+    }),
+
+    Plot.ruleY([0])
+  ]
+})
+))
+}});
+
+define({id: "9b80b9f1", inputs: ["Plot","pollinators","display"], body: async (Plot,pollinators,display) => {
+display(await(
+Plot.plot({
+  x: { label: "Pollinator Species" },
+  y: { label: "Total Nectar Production" },
+  marks: [
+    Plot.barY(await pollinators, {
+      x: "pollinator_species",
+      y: "nectar_production",
+      fill: "pollinator_species",
+      reduce: "mean",
+      sort: { x: "y", reverse: true },
+      r: 4,
+    }),
+
+    Plot.ruleY([0])
+  ]
+})
+))
+}});
+
+define({id: "904793c5", inputs: ["Plot","pollinators","display"], body: async (Plot,pollinators,display) => {
+display(await(
+// Histogram plot - Location-based with three stacked flower species components
+Plot.plot({
+  x: { label: "Location" },
+  y: { label: "Total Nectar Production" },
+  color: { 
+    legend: true,
+    domain: ["Coneflower", "Lavender", "Sunflower"],
+    range: ["#e74c3c", "#2ecc71", "#f39c12"]
+  },
+  marks: [
+    Plot.barY(await pollinators, {
+      x: "location",
+      y: "nectar_production",
+      fill: "flower_species",
+      reduce: "sum",
+      order: "sum"
+    }),
+
+    Plot.ruleY([0])
+  ]
+})
+))
+}});
+
+define({id: "d7312169", inputs: ["Plot","pollinators","display"], body: async (Plot,pollinators,display) => {
+display(await(
+Plot.plot({
+  x: { label: "Location" },
+  y: { label: "Total Nectar Production" },
+  color: { 
+    legend: true,
+    domain: ["Bumblebee", "Honeybee", "Carpenter Bee"],
+    range: ["#e74c3c", "#2ecc71", "#f39c12"]
+  },
+  marks: [
+    Plot.barY(await pollinators, {
+      x: "location",
+      y: "nectar_production",
+      fill: "pollinator_species",
+      reduce: "sum",
+      order: "sum"
+    }),
+
+    Plot.ruleY([0])
+  ]
+})
+))
+}});
+
+define({id: "2b56e3ea", outputs: ["Plot","bin","data"], body: async () => {
+const [Plot, {bin}] = await Promise.all([import("../_node/@observablehq/plot@0.6.17/index.d66b1832.js"), import("../_node/d3-array@3.2.4/index.f89e3560.js")]);
+
+// Sample data
+const data = [
+  {response_time: 120},
+  {response_time: 300},
+  {response_time: 150},
+  {response_time: 90},
+  {response_time: 200},
+  {response_time: 310}
+]
+
+return {Plot,bin,data};
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Interactive Data Visualization (Fall 2025)</a></li>
+  </ol>
+  <details>
+    <summary>Lab 0: Getting Started</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_0/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_0/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open class="observablehq-section-active">
+    <summary>Lab 1: Prolific Pollinators</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./readme">Instructions</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 2: Subway Staffing</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_2/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_2/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open>
+    <summary>Lab 3: Mayoral Mystery</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_3/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_3/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open>
+    <summary>Lab 4: Clearwater Crisis</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_4/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_4/">Dashboard</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#first-a-series-of-scatter-charts-to-view-the-pollinator-data-and-quickly-look-for-any-patterns-amongst-the-data-values-to-identify-key-bee-specific-and-exogenous-independent-variables-that-appear-to-impact-the-production-i-then-created-a-series-of-drill-down-charts-of-histograms-and-stacked-histograms-to-obtain-additional-insights">First, a series of scatter charts to view the Pollinator Data and quickly look for any patterns amongst the data values to identify key bee-specific and exogenous independent variables that appear to impact the production. I then created a series of “drill-down charts” of histograms and stacked histograms to obtain additional insights.</a></li>
+<li class="observablehq-secondary-link"><a href="#">------</a></li>
+<li class="observablehq-secondary-link"><a href="#question-1-body-mass-and-wing-span-distribution-of-species">Question 1: Body mass and wing span distribution of species:</a></li>
+<li class="observablehq-secondary-link"><a href="#-1">=====</a></li>
+<li class="observablehq-secondary-link"><a href="#responses-to-question-1">Responses to Question 1:</a></li>
+<li class="observablehq-secondary-link"><a href="#question-2-what-is-the-ideal-weather-for-nectar-production">Question 2: What is the ideal weather for Nectar Production</a></li>
+<li class="observablehq-secondary-link"><a href="#responses">Responses:</a></li>
+<li class="observablehq-secondary-link"><a href="#question-3-which-flower-has-the-most-nectar-production">Question 3: Which flower has the most nectar production</a></li>
+<li class="observablehq-secondary-link"><a href="#responses-1">Responses:</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<p>// Lab 1 results
+What follows below are my findings from the Pollinator Data I was able to obtain with the help of the Observable Fra</p>
+<h2 id="first-a-series-of-scatter-charts-to-view-the-pollinator-data-and-quickly-look-for-any-patterns-amongst-the-data-values-to-identify-key-bee-specific-and-exogenous-independent-variables-that-appear-to-impact-the-production-i-then-created-a-series-of-drill-down-charts-of-histograms-and-stacked-histograms-to-obtain-additional-insights" tabindex="-1"><a class="observablehq-header-anchor" href="#first-a-series-of-scatter-charts-to-view-the-pollinator-data-and-quickly-look-for-any-patterns-amongst-the-data-values-to-identify-key-bee-specific-and-exogenous-independent-variables-that-appear-to-impact-the-production-i-then-created-a-series-of-drill-down-charts-of-histograms-and-stacked-histograms-to-obtain-additional-insights">First, a series of scatter charts to view the Pollinator Data and quickly look for any patterns amongst the data values to identify key bee-specific and exogenous independent variables that appear to impact the production. I then created a series of “drill-down charts” of histograms and stacked histograms to obtain additional insights.</a></h2>
+<h2 id="" tabindex="-1"><a class="observablehq-header-anchor" href="#">------</a></h2>
+<h2 id="question-1-body-mass-and-wing-span-distribution-of-species" tabindex="-1"><a class="observablehq-header-anchor" href="#question-1-body-mass-and-wing-span-distribution-of-species">Question 1: Body mass and wing span distribution of species:</a></h2>
+<h2 id="-1" tabindex="-1"><a class="observablehq-header-anchor" href="#-1">=====</a></h2>
+<h2 id="responses-to-question-1" tabindex="-1"><a class="observablehq-header-anchor" href="#responses-to-question-1">Responses to Question 1:</a></h2>
+<p>•	Plot 1 shows clear and distinct the differences of the physical characters of the three species. I also checked if specie types could impact the nectar production.</p>
+<p>•	Plot 2 and 3 illustrated if the specie’s wing span (Plot 2) and body mass (Plot 3) had any impact on the individual nectar productions. The answer, surprisingly was, “not really.”</p>
+<h2 id="question-2-what-is-the-ideal-weather-for-nectar-production" tabindex="-1"><a class="observablehq-header-anchor" href="#question-2-what-is-the-ideal-weather-for-nectar-production">Question 2: What is the ideal weather for Nectar Production</a></h2>
+<h2 id="responses" tabindex="-1"><a class="observablehq-header-anchor" href="#responses">Responses:</a></h2>
+<p>•	Plot 5 Individual Nectar Production against Temperature seem to indicate that the low temperature (&lt;18 degrees Celsius) appear to be NOT conductive to nectar production but beyond that lower threshold, there appears to be limited relationship between nectar production and ambient temperature.</p>
+<p>•	Plot 6, which compares individual nectar production to humidity, also shows no distinct pattern.</p>
+<p>•	Following up on Plot5, Histogram in Plot 8 does show some weak patterns that the TOTAL nectar production seem to rise 20 to 28 degrees.
+•	The Plot 9 histogram, comparisons of weather condition vs average (per bee) nectar production does show higher aggregated production during the cloudy weather conditions, but additional study would be needed to figure out why.</p>
+<h2 id="question-3-which-flower-has-the-most-nectar-production" tabindex="-1"><a class="observablehq-header-anchor" href="#question-3-which-flower-has-the-most-nectar-production">Question 3: Which flower has the most nectar production</a></h2>
+<h2 id="responses-1" tabindex="-1"><a class="observablehq-header-anchor" href="#responses-1">Responses:</a></h2>
+<p>•	Plot 7 clearly indicates, individual flower to flower basis, Sunflower has shown bees can get the most nectar.</p>
+<p>•	Stacked histograms in Plot 12 (location based total nectar production, with the flower type data stacked ) and Plot 13 (location based total nectar production, with the bee specie data stacked) indicates that the story is more complex, potentially combining the bee species and flower types for the determination of the aggregated nectar production. Potential impact of increasing the bumble bees needs to be evaluated further.</p>
+<div class="observablehq observablehq--block"><!--:d64fd700:--></div>
+<p>// 1 Plot the pollinators data AGAINST BODY MASS,data points classified by BEE SPECIES (await the FileAttachment CSV result)</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:8f7cd407:--></div>
+<p>// 2 Plot the pollinators data (await the FileAttachment CSV result)
+// Plot INVIDUDUAL NECTAR PRODUCTION DATA against WING SIZE, data points specified by BEE SPECIES Clear distinctions!!</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:1296193f:--></div>
+<p>// 3 Plot the pollinators INDIVIDUAL NECTAR PRODUCTION data AGAINST BODY MASS, data points classified by BEE SPECIES (await the FileAttachment CSV result)</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:8b0aeaf9:--></div>
+<p>// 4. Plot the pollinators INVIDIDUAL NECTAR PRODUCTION data against VISIT COUNT BEE SIZE, data points specified by BEE SPECIES  (await the FileAttachment CSV result) Monst bees visit 0 to 6 times.</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:a0365db2:--></div>
+<p>// 5. Plot the pollinators NECTAR PRODUCTION data AGAINST TEMPERATURE, data points specified by BEE SPECIES (await the FileAttachment CSV result) Most activities between 20 to 28 degrees</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:21c57e7d:--></div>
+<p>// 6. Plot the pollinators individual NECTAR PRODUCTION data against HUMIDITY data points specified by WEATHER (await the FileAttachment CSV result)</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:779e96fe:--></div>
+<p>// 7. Plot the pollinators NECTAR PRODUCTION data AGAINST TEMPERATURE data points specified by FLOWER SPECIES (await the FileAttachment CSV result) Sunflower appears to be the winner!</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:5b97ae25:--></div>
+<p>// 8: Histogram TEMPERATURE and AGGREGATED NECTAR PRODUCTION Confirms the eyeballing done with Plot 5</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:654442ad:--></div>
+<p>// 9: Histogram WEATHER CONDITION and AVERAGE NECTAR PRODUCTION Sunny weather may be avoided by the bees??</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:7c686865:--></div>
+<p>// 10: Histogram HUMIDITY and AVERAGE NECTAR PRODUCTION</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:1bfa1b5b:--></div>
+<p>// 11 Histogram plot - grouped by pollinator species with average/mean nectar production (sorted) Bumblebees being in the most nectar (they are the most numerous, but also productive, as measured in "mean/average")</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:9b80b9f1:--></div>
+<p>// 12 LOCATION BASED TOTAL NECSTAR PRODUCTION, WITH FLOWER SPECIES IN STACKED FORM (Difficult to compare as we do not know the actual areas of the different locations)</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:904793c5:--></div>
+<p>// 13 Histogram plot - LOCATION BASED TOTAL NECTAR PRODUCTION with three stacked Form BEE SPECIES (most numerous bumblebees bring in the most aggregate nectora production, closely followed by honeybees)</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:d7312169:--></div>
+<div class="observablehq observablehq--block"><!--:2b56e3ea:--></div>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./readme"><span>Instructions</span></a><a rel="next" href="../lab_2/readme"><span>Instructions</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-12-19T01:24:09">Dec 19, 2025</a>.</div>
+</footer>
+</div>
+</body>
+</html>

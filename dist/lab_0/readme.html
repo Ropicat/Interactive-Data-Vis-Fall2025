@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Lab 0: Getting Started | Interactive Data Visualization (Fall 2025)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="modulepreload" href="../_observablehq/client.609bff7d.js">
+<link rel="modulepreload" href="../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.d2092143.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../_observablehq/client.609bff7d.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Interactive Data Visualization (Fall 2025)</a></li>
+  </ol>
+  <details open class="observablehq-section-active">
+    <summary>Lab 0: Getting Started</summary>
+    <ol>
+    <li class="observablehq-link observablehq-link-active"><a href="./readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="./">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 1: Prolific Pollinators</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_1/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_1/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 2: Subway Staffing</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_2/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_2/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open>
+    <summary>Lab 3: Mayoral Mystery</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_3/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_3/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open>
+    <summary>Lab 4: Clearwater Crisis</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_4/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_4/">Dashboard</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#installations">Installations</a></li>
+<li class="observablehq-secondary-link"><a href="#github-setup">Github Setup</a></li>
+<li class="observablehq-secondary-link"><a href="#1-on-gitub-within-to-our-main-repository-and-fork-this-repository-into-your-own-account">1. On Gitub, within to our main repository and fork this repository into your own account.</a></li>
+<li class="observablehq-secondary-link"><a href="#2-on-git-hub-navigate-to-your-fork-of-the-repository-clone-it-to-your-local-computer-and-install-dependencies">2. On GitHub, navigate to your fork of the repository, clone it to your local computer, and install dependencies.</a></li>
+<li class="observablehq-secondary-link"><a href="#3-set-up-your-local-repository-so-that-it-links-back-to-the-course-repository">3. Set up your local repository so that it links back to the course repository.</a></li>
+<li class="observablehq-secondary-link"><a href="#4-set-up-your-github-pages-for-your-deployment">4. Set up your Github Pages for your deployment</a></li>
+<li class="observablehq-secondary-link"><a href="#5-install-dependencies-and-begin-local-development">5. Install dependencies and begin local development</a></li>
+<li class="observablehq-secondary-link"><a href="#6-push-up-and-deploy-your-changes">6. Push up and deploy your changes</a></li>
+<li class="observablehq-secondary-link"><a href="#appendix">Appendix</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="lab-0-getting-started" tabindex="-1"><a class="observablehq-header-anchor" href="#lab-0-getting-started">Lab 0: Getting Started</a></h1>
+<p>The goals for this tutorial are:</p>
+<ul>
+<li>to set up installations for your local development environment</li>
+<li>to learn how to serve your pages so that you can see/interact with them while you are coding</li>
+<li>to get comfortable with the Github workflow</li>
+<li>to set up a public site to showcase your work</li>
+</ul>
+<p>The assignment requirements are as follows:</p>
+<ol>
+<li>Replicate the local environment created in class on your own computer (<a href="#installations">Installations</a>)</li>
+<li>Fork this repository, set up github pages, and initialize your upstream repository (<a href="#github-setup">Github Setup</a>)</li>
+<li>Edit the <code>index.md</code> file to include:
+<ol>
+<li>Markdown: A page header (<code>#</code>), some smaller header (<code>##</code> or <code>###</code>), and some text content</li>
+<li>HTML: A table, a list, and an image</li>
+<li>JS: include at least one <a href="https://observablehq.com/framework/inputs/" target="_blank" rel="noopener noreferrer"><code>Input</code> element</a> that changes a visible reference on the dashboard</li>
+</ol>
+</li>
+<li>Submit your <a href="#4-set-up-your-github-pages-for-your-deployment">deployed link</a> as a comment on the lab 0 commons post.</li>
+</ol>
+<hr>
+<h1 id="installations" tabindex="-1"><a class="observablehq-header-anchor" href="#installations">Installations</a></h1>
+<p>The first step is to install all the appropriate software to get our environment together. Please install the following on the computer you intend to complete all the labs from.</p>
+<p><em>Note</em>: while VS code is an application, the other softwares are installed via your terminal or bash. If this is your first time working with your terminal, check out <a href="#working-with-your-terminal">working with your terminal</a>.</p>
+<ul>
+<li><a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">VS Code</a> - free code editor and IDE (my recommendation). This is an application to view files and code. This application also includes many handy extensions that can help us with <a href="https://code.visualstudio.com/docs/editor/versioncontrol#_git-support" target="_blank" rel="noopener noreferrer">version control</a>.
+<ul>
+<li>You may also use another code editor that has AI integration, like <a href="https://cursor.com/" target="_blank" rel="noopener noreferrer">cursor</a>, but these ai integrations typically require payment after reacting an interaction limit.</li>
+</ul>
+</li>
+<li><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank" rel="noopener noreferrer">Git</a> version control software. You will also need an account on <a href="https://github.com/" target="_blank" rel="noopener noreferrer">Github.com</a>.
+<ul>
+<li>if you have a mac, and you have installed Xcode, you <em>already have git</em>. You can test this by opening your terminal and running <code>git --version</code>.</li>
+<li>if you are using a PC, an application called "git bash" will be part of the default git install. You may prefere to use this application rather than the "command prompt" for git commands.</li>
+<li>all installation details are included in the <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank" rel="noopener noreferrer">Getting Started Installing Git link</a>.</li>
+<li>an alternative for both mac and pc is to use the <a href="https://code.visualstudio.com/docs/editor/versioncontrol#_git-support" target="_blank" rel="noopener noreferrer">source control</a> options that come with the default VS Code installation. This is often easier than opening terminal each time and offers many of the same actions.</li>
+</ul>
+</li>
+<li><a href="https://nodejs.org/en/download/" target="_blank" rel="noopener noreferrer">Node</a> - javascript development software. You can check if the install was succesful by running <code>node -v</code> in your command line or terminal. It should return your version number.
+<ul>
+<li>Node installation includes node package manager (npm), which we will leverage to install Observable Framework and its dependencies.</li>
+</ul>
+</li>
+</ul>
+<h1 id="github-setup" tabindex="-1"><a class="observablehq-header-anchor" href="#github-setup">Github Setup</a></h1>
+<p>You can read more about <code>forking</code>, <code>syncing</code>, and the overall github flow <a href="https://help.github.com/en/github/getting-started-with-github/fork-a-repo" target="_blank" rel="noopener noreferrer">here</a>.</p>
+<h2 id="1-on-gitub-within-to-our-main-repository-and-fork-this-repository-into-your-own-account" tabindex="-1"><a class="observablehq-header-anchor" href="#1-on-gitub-within-to-our-main-repository-and-fork-this-repository-into-your-own-account">1. On Gitub, within to our <a href="https://github.com/InteractiveDataVis/Interactive-Data-Vis-Fall2025.git" target="_blank" rel="noopener noreferrer">main repository</a> and <a href="https://docs.github.com/en/github/getting-started-with-github/fork-a-repo" target="_blank" rel="noopener noreferrer"><code>fork</code></a> this repository into your own account.</a></h2>
+<p>To do this, click on the "fork" button on the top right of this github account.</p>
+<img src="../_file/lab_0/assets/fork.b9677c8b.png">
+<p>This creates a clone of our class repository in your own github account. After the fork, you can see this worked by confirming your github username appears before the repository name:</p>
+<img src="../_file/lab_0/assets/forked.169aac0c.png">
+<p>This repository is <em>your</em> personal copy of the existing repository. This will be where you do all your lab work, and will include the deployed links that you will submit when turning in your assignments.</p>
+<h2 id="2-on-git-hub-navigate-to-your-fork-of-the-repository-clone-it-to-your-local-computer-and-install-dependencies" tabindex="-1"><a class="observablehq-header-anchor" href="#2-on-git-hub-navigate-to-your-fork-of-the-repository-clone-it-to-your-local-computer-and-install-dependencies">2. On GitHub, navigate to <strong>your fork</strong> of the repository, clone it to your local computer, and install dependencies.</a></h2>
+<p>To do this, navigate to the folder where you want to save your files (I like to save mine in <code>Documents/Repositories</code>). (Hint: <code>cd</code> or 'change directory' will help you get there through terminal). Then use the <code>git clone</code> command and paste the git url from the big green "code" button:</p>
+<img src="../_file/lab_0/assets/clone.665caee6.png">
+<p>Copy the link inside there and use it after the <code>git clone</code> command in the terminal details below:</p>
+<pre data-language="sh"><code class="language-sh"><span class="hljs-comment"># from Terminal:</span>
+
+<span class="hljs-comment"># navigate to where you want to save your code</span>
+$ <span class="hljs-built_in">cd</span> PATH_TO_YOUR/FOLDER
+
+<span class="hljs-comment"># clone your fork to your local computer</span>
+$ git <span class="hljs-built_in">clone</span> https://github.com/[YOUR_USERNAME]/Interactive-Data-Vis-Fall2025
+
+<span class="hljs-comment"># `cd` (change directory) into this repository</span>
+$ <span class="hljs-built_in">cd</span> Interactive-Data-Vis-Fall2025
+</code></pre>
+<h2 id="3-set-up-your-local-repository-so-that-it-links-back-to-the-course-repository" tabindex="-1"><a class="observablehq-header-anchor" href="#3-set-up-your-local-repository-so-that-it-links-back-to-the-course-repository">3. Set up your local repository so that it links back to the course repository.</a></h2>
+<p>We do this so that you can keep your local branch synced up with the main course repository when we update the material. With this set up, you can simply <code>pull</code> in the new changes from our original class repository.</p>
+<pre data-language="sh"><code class="language-sh"><span class="hljs-comment">#See current remote branches:</span>
+
+$ git remote -v
+&gt; origin	https://github.com/[YOUR_USERNAME]/Interactive-Data-Vis-Fall2025.git (fetch)
+&gt; origin	https://github.com/[YOUR_USERNAME]/Interactive-Data-Vis-Fall2025.git (push)
+
+<span class="hljs-comment"># currently this is only tracking your version of the repository</span>
+</code></pre>
+<p>Add an <code>upstream</code> remote branch so you can keep yours synced with the main class repository:</p>
+<pre data-language="sh"><code class="language-sh">$ git remote add upstream https://github.com/InteractiveDataVis/Interactive-Data-Vis-Fall2025.git
+</code></pre>
+<p>Check remote branches again to ensure that the update worked. You should see 2 sets of branches, <code>origin</code> which links back to your fork, and <code>upstream</code> which references back to the course repository:</p>
+<pre data-language="sh"><code class="language-sh">$ git remote -v
+&gt; origin	https://github.com/[YOUR_USERNAME]/Interactive-Data-Vis-Fall2025.git (fetch)
+&gt; origin	https://github.com/[YOUR_USERNAME]/Interactive-Data-Vis-Fall2025.git (push)
+&gt; upstream	https://github.com/InteractiveDataVis/Interactive-Data-Vis-Fall2025.git (fetch)
+&gt; upstream	https://github.com/InteractiveDataVis/Interactive-Data-Vis-Fall2025.git (push)
+
+<span class="hljs-comment"># now we are tracking both the original and your version of the repository</span>
+</code></pre>
+<h2 id="4-set-up-your-github-pages-for-your-deployment" tabindex="-1"><a class="observablehq-header-anchor" href="#4-set-up-your-github-pages-for-your-deployment">4. Set up your Github Pages for your deployment</a></h2>
+<p>We use <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages" target="_blank" rel="noopener noreferrer">Github Pages</a> to serve our websites publicly. Github Pages is static site hosting service that takes HTML, CSS, and JavaScript files straight from a repository on GitHub, optionally runs the files through a build process, and publishes a website.</p>
+<p>To <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site#creating-your-site" target="_blank" rel="noopener noreferrer">set up your github pages site</a>, you can go to your repository's <code>Settings</code> tab and then scroll down to <code>Pages</code> section. Select <code>Github Actions</code> as source ("Deploy from a branch").</p>
+<img src="../_file/lab_0/assets/pages.e6f699fe.png">
+<p>The workflow code is already included in the main class repository, but disabled by default. The workflow file is something called a <code>.yml</code> file, located in the <code>.github</code> file at <code>.github/workflows/deploy.yml</code>. This workflow includes instructions telling github to build and deploy your app whenever you push to main. You shouldn't have to change this file at all, but here's the key commands of the file for your understanding:</p>
+<pre data-language="yml"><code class="language-yml"><span class="hljs-attr">on:</span>
+  <span class="hljs-comment"># Run this workflow whenever a new commit is pushed to main.</span>
+  <span class="hljs-attr">push:</span> {<span class="hljs-attr">branches:</span> [<span class="hljs-string">main</span>]}
+
+<span class="hljs-attr">jobs:</span>
+  <span class="hljs-comment"># define the job</span>
+  <span class="hljs-attr">deploy:</span>
+    <span class="hljs-string">...</span>
+    <span class="hljs-attr">steps:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">run:</span> <span class="hljs-string">npm</span> <span class="hljs-string">run</span> <span class="hljs-string">build</span> <span class="hljs-comment"># builds the app</span>
+      <span class="hljs-string">...</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Deploy</span> <span class="hljs-comment"># run the github deploy pages action</span>
+        <span class="hljs-attr">id:</span> <span class="hljs-string">deployment</span>
+        <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/deploy-pages@v4</span>
+
+</code></pre>
+<p>To deploy your app on push, you need to enable these workflows. Navigate to the "actions" tab, and click "I understand my workflows, go ahead and enable them". The app will now deploy on push.</p>
+<img src="../_file/lab_0/assets/enable_workflow.cd8b8a1b.png">
+<p>When you push your changes up to github, then your site will automatically be redeployed and be avallable at <code>https://[YOUR_USERNAME].github.io/[YOUR_REPOSITORY_NAME]/</code>.</p>
+<p>Once you have pushed a change, you can see all the deployments triggered from pushed in the deployments section of your repository page. These will not be triggered until you make a change to your repo and push it back up to github.</p>
+<img src="../_file/lab_0/assets/deployments.72ca2d68.png">
+<p><em>NOTE</em>: You must navidate in the URL to a folder with an index.html, or else you will get a 404. This will take a few minutes to update with any pushed changes.</p>
+<h2 id="5-install-dependencies-and-begin-local-development" tabindex="-1"><a class="observablehq-header-anchor" href="#5-install-dependencies-and-begin-local-development">5. Install dependencies and begin local development</a></h2>
+<p>The cloned repository already has packages and dependencies set up to get started with Observable Framework. The <code>package.json</code> file includes the details of the packages required to begin development.</p>
+<p>To install and get started, run the following in your terminal:</p>
+<pre data-language="sh"><code class="language-sh"><span class="hljs-comment"># within the repository directory, install the packages</span>
+$ npm install
+
+<span class="hljs-comment"># attempt to enter development</span>
+$ npm run dev
+
+&gt; dev
+&gt; observable preview
+&gt; Observable Framework v1.13.3
+&gt; ↳ http://127.0.0.1:3001/
+</code></pre>
+<p>Your terminal will now begin serving the code at the listed url. This can be <a href="http://127.0.0.1:3000/" target="_blank" rel="noopener noreferrer"><code>http://127.0.0.1:3000/</code></a> or another port (e.g., <code>:3001</code>). The listed url in your terminal is where your code is served. Navigate to that link in your browser. You should see the code from the class repository.</p>
+<p>To exit out of this live updating serve, in the terminal window in which the serve is taking place, type <code>CNTRL</code> or <code>CMMD</code> + <code>c</code></p>
+<img src="../_file/lab_0/assets/local_serve.e3f6e833.png">
+<h2 id="6-push-up-and-deploy-your-changes" tabindex="-1"><a class="observablehq-header-anchor" href="#6-push-up-and-deploy-your-changes">6. Push up and deploy your changes</a></h2>
+<p>When you have made a change that you want to keep, you can commit your changes. VS Code has some great <a href="https://code.visualstudio.com/docs/editor/versioncontrol#_git-support" target="_blank" rel="noopener noreferrer">tools</a> built in to help with this process, which are a bit easier, or you can leverage the command line.</p>
+<p><strong>To use VS Code tools</strong>:</p>
+<img src="../_file/lab_0/assets/version_control.96f98d9d.png" width="250">
+<ol>
+<li>Open the "version control" panel on the left side of your application. You should see a list of changes and a place to add a comment.</li>
+<li>Click on the "+" next to each change to add it to the staged changes.</li>
+<li>Add a comment about your work, then click "commit". Just because you have committed the changes does not mean they are pushed to your repository yet.</li>
+<li>Click the three dots and click "push" to send your commit to github.</li>
+</ol>
+<p><strong>To use the command line</strong>:</p>
+<pre data-language="sh"><code class="language-sh"><span class="hljs-comment"># see which files have changes associated with them</span>
+$ git status
+
+<span class="hljs-comment"># add, or 'stage', files or folders for this commit</span>
+$ git add [path/fileName]
+<span class="hljs-comment"># you can also do the shorthand git add . to add all files</span>
+
+<span class="hljs-comment"># commit the files with a brief explanation of what you are changing</span>
+<span class="hljs-comment"># ex: `git commit -m 'add bar chart legend`</span>
+$ git commit -m <span class="hljs-string">'message regaring what changes you are commiting'</span>
+</code></pre>
+<p>When you are ready to push up your code to your remote repository, you can run:</p>
+<pre data-language="sh"><code class="language-sh">$ git push
+</code></pre>
+<p><strong>That's it! Now you are ready to create, update, and deploy your own dashboards 🎉!</strong></p>
+<h1 id="appendix" tabindex="-1"><a class="observablehq-header-anchor" href="#appendix">Appendix</a></h1>
+<h3 id="working-with-your-terminal" tabindex="-1"><a class="observablehq-header-anchor" href="#working-with-your-terminal">Working with your terminal</a></h3>
+<p>Your computer, mac or pc, includes a command line interface that lets you communicate with your operating system. For macs, that app is called "terminal", and on windows machines, its the "command prompt".</p>
+<p><img src="../_file/lab_0/assets/mac_terminal.6e5450bb.png" alt="Mac Terminal">
+<img src="../_file/lab_0/assets/pc_command_prompt.936ed10d.png" alt="Command Prompt"></p>
+<p>More resources to understand these interfaces:</p>
+<ul>
+<li>Mac: <a href="https://support.apple.com/guide/terminal/what-is-terminal-trmld4c92d55/mac" target="_blank" rel="noopener noreferrer">What is terminal on mac?</a></li>
+<li>PC: <a href="https://en.wikipedia.org/wiki/Cmd.exe" target="_blank" rel="noopener noreferrer">cmd.exe Wiki</a></li>
+<li>PC: <a href="https://www.youtube.com/watch?v=QBWX_4ho8D4" target="_blank" rel="noopener noreferrer">Command Prompt Basics (youtube tutorial)</a></li>
+<li><a href="https://www.codecademy.com/article/command-line-commands" target="_blank" rel="noopener noreferrer">Complete List: Command Line Prompt (CMD)</a></li>
+</ul>
+<h3 id="keeping-your-repository-synced" tabindex="-1"><a class="observablehq-header-anchor" href="#keeping-your-repository-synced">Keeping your repository synced</a></h3>
+<p>As the semester progresses, updates may be pushed to the class repository. The following terminal commands can keep your repo <a href="https://help.github.com/en/github/getting-started-with-github/fork-a-repo#keep-your-fork-synced" target="_blank" rel="noopener noreferrer">synced</a>. Make sure to do this before working on new code to ensure that you are working off of the latest updates.</p>
+<pre data-language="sh"><code class="language-sh"><span class="hljs-comment"># pulls the upstream changes and stores them in `upstream/main`</span>
+$ git fetch upstream
+</code></pre>
+<pre data-language="sh"><code class="language-sh"><span class="hljs-comment"># merges the changes from upstream into your current branch</span>
+$ git merge upstream/main
+</code></pre>
+<p>(You can read more information about this process <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork" target="_blank" rel="noopener noreferrer">here</a>)</p>
+<h3 id="helpful-terminal-commands-for-navigation" tabindex="-1"><a class="observablehq-header-anchor" href="#helpful-terminal-commands-for-navigation">Helpful terminal commands for navigation</a></h3>
+<p><strong>Windows Command Prompt (CMD)</strong></p>
+<ul>
+<li><code>dir</code>: List files and folders in current directory</li>
+<li><code>cd [folder]</code>: Change directory (e.g., cd Documents)</li>
+<li><code>cd ..</code>: Go up one directory level</li>
+<li><code>cd \</code>: Go to root directory</li>
+<li><code>mkdir [name]</code>: Create new folder</li>
+<li><code>rmdir [name]</code>: Remove empty folder</li>
+<li><code>del [filename]</code>: Delete file</li>
+<li><code>copy [source] [destination]</code>: Copy files</li>
+<li><code>move [source] [destination]</code>: Move/rename files</li>
+</ul>
+<p><strong>macOS/Linux Terminal</strong></p>
+<ul>
+<li><code>ls</code>: List files and folders (ls -la for detailed view)</li>
+<li><code>cd [folder]</code>: Change directory</li>
+<li><code>cd ..</code>: Go up one directory</li>
+<li><code>cd ~</code>: Go to home directory</li>
+<li><code>pwd</code>: Show current directory path</li>
+<li><code>mkdir [name]</code>: Create folder</li>
+<li><code>rmdir [name]</code>: Remove empty folder</li>
+<li><code>rm [filename]</code>: Delete file (rm -r [folder] for folders)</li>
+<li><code>cp [source] [destination]</code>: Copy files</li>
+<li><code>mv [source] [destination]</code>: Move/rename files</li>
+</ul>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="../"><span>Interactive Data Visualization (Fall 2025)</span></a><a rel="next" href="./"><span>Dashboard</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-12-19T01:24:09">Dec 19, 2025</a>.</div>
+</footer>
+</div>
+</body>
+</html>

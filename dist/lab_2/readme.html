@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Lab 2: Subway Staffing | Interactive Data Visualization (Fall 2025)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="modulepreload" href="../_observablehq/client.609bff7d.js">
+<link rel="modulepreload" href="../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.d2092143.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../_observablehq/client.609bff7d.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Interactive Data Visualization (Fall 2025)</a></li>
+  </ol>
+  <details>
+    <summary>Lab 0: Getting Started</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_0/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_0/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 1: Prolific Pollinators</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_1/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_1/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open class="observablehq-section-active">
+    <summary>Lab 2: Subway Staffing</summary>
+    <ol>
+    <li class="observablehq-link observablehq-link-active"><a href="./readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="./">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open>
+    <summary>Lab 3: Mayoral Mystery</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_3/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_3/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open>
+    <summary>Lab 4: Clearwater Crisis</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_4/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_4/">Dashboard</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#data-context">Data Context</a></li>
+<li class="observablehq-secondary-link"><a href="#nyc-subway-operations-datasets">NYC Subway Operations Datasets</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="lab-2-subway-staffing" tabindex="-1"><a class="observablehq-header-anchor" href="#lab-2-subway-staffing">Lab 2: Subway Staffing</a></h1>
+<p>The goals for this tutorial are:</p>
+<ul>
+<li>to build upon importing data, and leverage more than one dataset</li>
+<li>to explore more <a href="https://observablehq.com/plot/features/transforms" target="_blank" rel="noopener noreferrer">transforms</a> with Observable Plot</li>
+<li>to iterate with visualizations to answer data questions</li>
+</ul>
+<p>The assignment requirements are as follows:</p>
+<ol>
+<li>Create a dashboard in the <code>index.md</code> file that answers (at least the first) three questions posed in the lab below. Please also include written context for the answers that is supported by visualizations.</li>
+<li>Use <strong>at least one transform</strong> in a plot you create. We've used <code>bin</code> and <code>group</code>, but there's more options like <code>centroid</code>, <code>dodge</code>, <code>hexbin</code>, etc. Try to get creative, but of course, you're only limited to what the data, scales, and marks allow.</li>
+<li>Use <strong>at least one annotation</strong> on a visualization to illustrate something of note. This could be a moment in time, or a statistical detail (mean, median), or a <a href="https://observablehq.com/plot/marks/tip#tip-mark" target="_blank" rel="noopener noreferrer">tip mark callout</a>.</li>
+<li>Submit your <a href="#4-set-up-your-github-pages-for-your-deployment">deployed link</a> as a comment on the lab 2 commons post.</li>
+</ol>
+<p>Some tips for this assignment:</p>
+<ul>
+<li>You shouldn't have to use <code>&lt;scripts&gt;</code> or import any languages that we don't already have access to. (Note: if you use d3 for color or data manipulation, thats ok, just don't use d3 for creating visuals)</li>
+<li>You can use HTML within the scope of what Framework has outlined for us. You can write HTML directly in your md file -- you shouldn't have to do anything fancy.</li>
+</ul>
+<hr>
+<h1 id="data-context" tabindex="-1"><a class="observablehq-header-anchor" href="#data-context">Data Context</a></h1>
+<p>The NYC Transit Authority has collected operational data from their Manhattan subway stations and needs your help to make critical staffing decisions for next summer. They are planning for a busy event season in 2026 and want to ensure they have adequate staff at the right stations.</p>
+<p>Some notes:</p>
+<ul>
+<li>While the incident detail isn't included, you do have access to the incident severity.</li>
+<li>There was a subway fare price change from $2.75 to $3.00 on July 15th.</li>
+<li>The events data includes a nearby station where the traffic can typucally be attributed to.</li>
+<li>Current staffing numbers for the relevant subway stations are as follows, which could be relevant in your analysis:<pre><code>{
+  "Times Sq-42 St": 19,
+  "Grand Central-42 St": 18,
+  "34 St-Penn Station": 15,
+  "14 St-Union Sq": 4,
+  "Fulton St": 17,
+  "42 St-Port Authority": 14,
+  "Herald Sq-34 St": 15,
+  "Canal St": 4,
+  "59 St-Columbus Circle": 6,
+  "125 St": 7,
+  "96 St": 19,
+  "86 St": 19,
+  "72 St": 10,
+  "66 St-Lincoln Center": 15,
+  "50 St": 20,
+  "28 St": 13,
+  "23 St": 8,
+  "Christopher St": 15,
+  "Houston St": 18,
+  "Spring St": 12,
+  "Chambers St": 18,
+  "Wall St": 9,
+  "Bowling Green": 6,
+  "West 4 St-Wash Sq": 4,
+  "Astor Pl": 7
+}
+</code></pre>
+</li>
+</ul>
+<p>Specifically, your dashboard should answer:</p>
+<ol>
+<li>How did local events impact ridership in summer 2025? What effect did the July 15th fare increase have?</li>
+<li>How do the stations compare when it comes to response time? Which are the best, which are the worst?</li>
+<li>Which three stations need the most staffing help for next summer based on the 2026 event calendar?</li>
+<li>[BONUS] If you had to prioritize <em>one</em> station to get increased staffing, which would it be and why?</li>
+</ol>
+<p>The data could yield additional interesting trends, but these questions are the most important. The data has been provided in multiple datasets, all in the <code>/data</code> folder.</p>
+<h2 id="nyc-subway-operations-datasets" tabindex="-1"><a class="observablehq-header-anchor" href="#nyc-subway-operations-datasets">NYC Subway Operations Datasets</a></h2>
+<h3 id="local-events-csv-summer-2025" tabindex="-1"><a class="observablehq-header-anchor" href="#local-events-csv-summer-2025">local_events.csv (Summer 2025)</a></h3>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+<th>Range/Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>date</strong></td>
+<td>Date</td>
+<td>2025-06-01 to 2025-08-14</td>
+<td>Date of the event</td>
+</tr>
+<tr>
+<td><strong>event_name</strong></td>
+<td>Categorical</td>
+<td>Various</td>
+<td>Type of event (concerts, festivals, etc.)</td>
+</tr>
+<tr>
+<td><strong>nearby_station</strong></td>
+<td>Categorical</td>
+<td>25 stations</td>
+<td>Subway station nearest to the event</td>
+</tr>
+<tr>
+<td><strong>estimated_attendance</strong></td>
+<td>Integer</td>
+<td>500-15,000</td>
+<td>Actual attendance at the event</td>
+</tr>
+</tbody>
+</table>
+<h3 id="upcoming-events-csv-summer-2026-planning" tabindex="-1"><a class="observablehq-header-anchor" href="#upcoming-events-csv-summer-2026-planning">upcoming_events.csv (Summer 2026 - Planning)</a></h3>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+<th>Range/Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>date</strong></td>
+<td>Date</td>
+<td>2026-06-01 to 2026-08-14</td>
+<td>Date of the planned event</td>
+</tr>
+<tr>
+<td><strong>event_name</strong></td>
+<td>Categorical</td>
+<td>Various</td>
+<td>Type of event (concerts, festivals, etc.)</td>
+</tr>
+<tr>
+<td><strong>nearby_station</strong></td>
+<td>Categorical</td>
+<td>25 stations</td>
+<td>Subway station nearest to the event</td>
+</tr>
+<tr>
+<td><strong>expected_attendance</strong></td>
+<td>Integer</td>
+<td>500-15,000</td>
+<td>Projected attendance at the event</td>
+</tr>
+</tbody>
+</table>
+<h3 id="incidents-csv-10-years-of-historical-data" tabindex="-1"><a class="observablehq-header-anchor" href="#incidents-csv-10-years-of-historical-data">incidents.csv (10 Years of Historical Data)</a></h3>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+<th>Range/Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>date</strong></td>
+<td>Date</td>
+<td>2015-01-01 to 2025-08-14</td>
+<td>Date of the incident</td>
+</tr>
+<tr>
+<td><strong>station</strong></td>
+<td>Categorical</td>
+<td>25 stations</td>
+<td>Subway station where incident occurred</td>
+</tr>
+<tr>
+<td><strong>severity</strong></td>
+<td>Categorical</td>
+<td>low, medium, high</td>
+<td>Severity level of the incident</td>
+</tr>
+<tr>
+<td><strong>staffing_count</strong></td>
+<td>Integer</td>
+<td>3-20</td>
+<td>Number of staff on duty at the time</td>
+</tr>
+<tr>
+<td><strong>response_time_minutes</strong></td>
+<td>Numeric</td>
+<td>2-25 minutes</td>
+<td>Time to respond to the incident</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ridership-csv-summer-2025" tabindex="-1"><a class="observablehq-header-anchor" href="#ridership-csv-summer-2025">ridership.csv (Summer 2025)</a></h3>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+<th>Range/Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>date</strong></td>
+<td>Date</td>
+<td>2025-06-01 to 2025-08-14</td>
+<td>Date of ridership count</td>
+</tr>
+<tr>
+<td><strong>station</strong></td>
+<td>Categorical</td>
+<td>25 stations</td>
+<td>Subway station</td>
+</tr>
+<tr>
+<td><strong>entrances</strong></td>
+<td>Integer</td>
+<td>2,000-27,000+</td>
+<td>Number of people entering the station</td>
+</tr>
+<tr>
+<td><strong>exits</strong></td>
+<td>Integer</td>
+<td>2,000-27,000+</td>
+<td>Number of people exiting the station</td>
+</tr>
+</tbody>
+</table>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="../lab_1/"><span>Dashboard</span></a><a rel="next" href="./"><span>Dashboard</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-12-19T01:24:09">Dec 19, 2025</a>.</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Lab 4: Clearwater Crisis | Interactive Data Visualization (Fall 2025)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="modulepreload" href="../_observablehq/client.609bff7d.js">
+<link rel="modulepreload" href="../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.d2092143.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import "../_observablehq/client.609bff7d.js";
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Interactive Data Visualization (Fall 2025)</a></li>
+  </ol>
+  <details>
+    <summary>Lab 0: Getting Started</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_0/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_0/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 1: Prolific Pollinators</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_1/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_1/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 2: Subway Staffing</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_2/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_2/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open>
+    <summary>Lab 3: Mayoral Mystery</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_3/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_3/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open class="observablehq-section-active">
+    <summary>Lab 4: Clearwater Crisis</summary>
+    <ol>
+    <li class="observablehq-link observablehq-link-active"><a href="./readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="./">Dashboard</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#data-context">Data Context</a></li>
+<li class="observablehq-secondary-link"><a href="#suspects">Suspects</a></li>
+<li class="observablehq-secondary-link"><a href="#water-quality-standards">Water Quality Standards</a></li>
+<li class="observablehq-secondary-link"><a href="#datasets">Datasets</a></li>
+<li class="observablehq-secondary-link"><a href="#hints">Hints</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="lab-4-clearwater-crisis" tabindex="-1"><a class="observablehq-header-anchor" href="#lab-4-clearwater-crisis">Lab 4: Clearwater Crisis</a></h1>
+<p>The goals for this lab are:</p>
+<ul>
+<li>to build data exploration skillsets with even more ambiguity</li>
+<li>to continue iterating with visualizations to discover data insights</li>
+<li>to hone the data → visualization workflow</li>
+</ul>
+<div class="tip" label="BYO Data">
+For this lab only, you have the option to <b>either</b> follow the lab prompt (the "clearwater crisis") or visualize something else that you may be interested in or want to explore.</div>
+<p><b>However!</b> There are a few parameters around supplying your own data:</p>
+<ol>
+<li>Your data must be public, something that you can share publicly, or something that you can anonymize so it can be shared publicly. Your github repository is public and not restricted to members of this class, GC, or CUNY.</li>
+<li>Your data must have a minimum of ~200 rows and vary in data type. This is intended to keep this lab challenging; most robust datasets could fit this requirement. You can use more than one dataset to achieve this requirement, for example:
+<ul>
+<li>Maybe you have personal running data, but its only date and miles, you could expand this to map data, weather details for those dates, journal entries about how you feel, etc.</li>
+<li>If you particularly are interested in a (W)NBA team, but you only have games and scores, maybe expand to include roster changes midseason, or basketball basket position, or geographical location of the game, etc.</li>
+</ul>
+</li>
+<li>You don't spend more than ~3 hours sourcing or building this data. This is less a requirement and more a recommendation, but finding, cleaning, and parsing data is often the hardest part of data visualization. Providing you with data in the labs is intended to keep your focus on the visualizations and how to build them.</li>
+</ol>
+<p>The assignment requirements, either for your own data or clearwater crisis data, are as follows:</p>
+<ol>
+<li>Create a storytelling or exploratory dashboard in the <code>index.md</code> file of visualizations with Observable Plot (or d3, if you feel comfortable).
+<ul>
+<li>If you choose to supply your own data, your dashboard should present some insight and/or explore the answer to some question.</li>
+<li>If you choose to explore the clearwater crisis, your dashboard should present a case for who you think is responsible for the ecosystem in crisis at lake clearwater.</li>
+</ul>
+</li>
+<li>You are not restricted in number or style of visualizations, but you will be graded on the following, as per our class syllabus:
+<ul>
+<li>On time submission</li>
+<li>Technical requirements met</li>
+<li>Thoughtful responses to research questions (if applicable)</li>
+<li>Well articulated data presentations</li>
+<li>Design considerations</li>
+</ul>
+</li>
+<li>Submit your <a href="#4-set-up-your-github-pages-for-your-deployment">deployed link</a> as a comment on the lab 4 commons post.</li>
+</ol>
+<hr>
+<h1 id="data-context" tabindex="-1"><a class="observablehq-header-anchor" href="#data-context">Data Context</a></h1>
+<p>Lake Clearwater was once a thriving recreational lake with healthy fish populations and clear waters. However, over the past two years, something has gone terribly wrong. Fish populations have crashed, particularly among sensitive species like trout. Water quality has degraded in certain areas of the lake.</p>
+<p>Your job is to analyze the data and determine which of the four suspects operating around the lake is responsible for the ecological collapse.</p>
+<p>The fish population readings are in the <code>fish_surveys.csv</code> file. The <code>monitoring_stations.csv</code> can tell you each station's position in the lake, and each <code>water_quality.csv</code> measurement is associated with a particular station. The <code>suspect_activities.csv</code> file can tell you what we know about each of the four suspects and possible contributing activities.</p>
+<h2 id="suspects" tabindex="-1"><a class="observablehq-header-anchor" href="#suspects">Suspects</a></h2>
+<p><strong>Riverside Farm (Northern Shore)</strong></p>
+<ul>
+<li>Operations: 500-acre agricultural operation growing corn and soybeans</li>
+<li>Location: Northern shore with direct runoff into lake tributaries</li>
+<li>Possible contributing factors:
+<ul>
+<li>Applies nitrogen fertilizer in spring (April-May) and fall (September)</li>
+<li>Uses phosphorus-based fertilizers</li>
+<li>Standard farming operations</li>
+</ul>
+</li>
+</ul>
+<p><strong>Clearwater Fishing Lodge (Southern Shore)</strong></p>
+<ul>
+<li>Operations: Recreational fishing lodge and guide service</li>
+<li>Location: Southern shore</li>
+<li>Possible contributing factors:
+<ul>
+<li>Grand opening in January 2023 (coinciding with start of fish decline)</li>
+<li>Guided fishing tours (removing fish from lake)</li>
+<li>Increased boat traffic; Boat fuel and oil usage</li>
+<li>Septic system for lodge facilities</li>
+<li>New dock construction</li>
+</ul>
+</li>
+</ul>
+<p><strong>Lakeview Resort (Eastern Shore)</strong></p>
+<ul>
+<li>Operations: Hotel and marina complex serving 200+ guests</li>
+<li>Location: Eastern shore</li>
+<li>Possible contributing factors:
+<ul>
+<li>Allowed a daily discharge limit: 0.3 kg heavy metals maximum (from wastewater treatment)</li>
+<li>Expanded operations in 2023-2024 with new construction</li>
+<li>Marina operations with boat traffic</li>
+<li>Operates wastewater treatment facility</li>
+</ul>
+</li>
+</ul>
+<p><strong>ChemTech Manufacturing (Western Shore)</strong></p>
+<ul>
+<li>Operations: Industrial chemical manufacturing facility</li>
+<li>Location: Western shore where water enters the lake</li>
+<li>Possible contributing factors:
+<ul>
+<li>Allowed a daily discharge limit of 2.5 kg heavy metals maximum</li>
+<li>Quarterly maintenance shutdowns requiring temporary process changes</li>
+<li>Subject to daily monitoring and reporting; violations trigger EPA enforcement actions</li>
+</ul>
+</li>
+</ul>
+<h2 id="water-quality-standards" tabindex="-1"><a class="observablehq-header-anchor" href="#water-quality-standards">Water Quality Standards</a></h2>
+<p>Lake Clearwater is monitored by the state EPA. Violations of these standards trigger enforcement:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Concern Threshold</th>
+<th>Regulatory Limit</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Heavy Metals</strong></td>
+<td>20 ppb</td>
+<td>30 ppb</td>
+<td>Levels above 20 ppb harm sensitive fish; above 30 ppb violates permit</td>
+</tr>
+<tr>
+<td><strong>Nitrogen</strong></td>
+<td>1.5 mg/L</td>
+<td>2.0 mg/L</td>
+<td>Excess causes algae blooms</td>
+</tr>
+<tr>
+<td><strong>Phosphorus</strong></td>
+<td>0.05 mg/L</td>
+<td>0.1 mg/L</td>
+<td>Excess causes eutrophication</td>
+</tr>
+<tr>
+<td><strong>Dissolved Oxygen</strong></td>
+<td>7 mg/L (ideal)</td>
+<td>5 mg/L (minimum)</td>
+<td>Below 5 mg/L threatens fish survival</td>
+</tr>
+<tr>
+<td><strong>pH</strong></td>
+<td>6.5-8.5</td>
+<td>6.0-9.0</td>
+<td>Acceptable range for aquatic life</td>
+</tr>
+<tr>
+<td><strong>Turbidity</strong></td>
+<td>10 NTU</td>
+<td>25 NTU</td>
+<td>Higher values reduce light penetration</td>
+</tr>
+</tbody>
+</table>
+<h2 id="datasets" tabindex="-1"><a class="observablehq-header-anchor" href="#datasets">Datasets</a></h2>
+<h3 id="water-quality-csv-420-rows" tabindex="-1"><a class="observablehq-header-anchor" href="#water-quality-csv-420-rows">water_quality.csv (~420 rows)</a></h3>
+<p>Weekly water quality measurements from 4 monitoring stations (North, South, East, West).</p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+<th>Range/Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>date</strong></td>
+<td>Date</td>
+<td>2023-01-01 to 2024-12-31</td>
+<td>Date of measurement (weekly samples)</td>
+</tr>
+<tr>
+<td><strong>station_id</strong></td>
+<td>Categorical</td>
+<td>North, South, East, West</td>
+<td>Station identifier</td>
+</tr>
+<tr>
+<td><strong>station_name</strong></td>
+<td>Categorical</td>
+<td>4 stations</td>
+<td>Readable station name</td>
+</tr>
+<tr>
+<td><strong>nitrogen_mg_per_L</strong></td>
+<td>Numeric</td>
+<td>0.6-2.5 mg/L</td>
+<td>Nitrogen concentration</td>
+</tr>
+<tr>
+<td><strong>phosphorus_mg_per_L</strong></td>
+<td>Numeric</td>
+<td>0.02-0.10 mg/L</td>
+<td>Phosphorus concentration</td>
+</tr>
+<tr>
+<td><strong>heavy_metals_ppb</strong></td>
+<td>Numeric</td>
+<td>8-75 ppb</td>
+<td>Heavy metal concentration (industrial pollutant)</td>
+</tr>
+<tr>
+<td><strong>turbidity_ntu</strong></td>
+<td>Numeric</td>
+<td>3-30 NTU</td>
+<td>Water cloudiness/sediment</td>
+</tr>
+<tr>
+<td><strong>ph</strong></td>
+<td>Numeric</td>
+<td>6.5-7.6</td>
+<td>Acidity/alkalinity</td>
+</tr>
+<tr>
+<td><strong>dissolved_oxygen_mg_per_L</strong></td>
+<td>Numeric</td>
+<td>4.5-9.5 mg/L</td>
+<td>Oxygen available for fish</td>
+</tr>
+<tr>
+<td><strong>temperature_celsius</strong></td>
+<td>Numeric</td>
+<td>4-28°C</td>
+<td>Water temperature</td>
+</tr>
+</tbody>
+</table>
+<h3 id="monitoring-stations-csv-4-rows" tabindex="-1"><a class="observablehq-header-anchor" href="#monitoring-stations-csv-4-rows">monitoring_stations.csv (4 rows)</a></h3>
+<p>Information about station locations and distances from suspects.</p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+<th>Range/Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>station_id</strong></td>
+<td>Categorical</td>
+<td>North, South, East, West</td>
+<td>Station identifier</td>
+</tr>
+<tr>
+<td><strong>station_name</strong></td>
+<td>Categorical</td>
+<td>4 stations</td>
+<td>Readable name</td>
+</tr>
+<tr>
+<td><strong>distance_to_chemtech_m</strong></td>
+<td>Numeric</td>
+<td>800-5400 meters</td>
+<td>Distance from ChemTech facility</td>
+</tr>
+<tr>
+<td><strong>distance_to_farm_m</strong></td>
+<td>Numeric</td>
+<td>600-5200 meters</td>
+<td>Distance from Riverside Farm</td>
+</tr>
+<tr>
+<td><strong>distance_to_resort_m</strong></td>
+<td>Numeric</td>
+<td>700-4600 meters</td>
+<td>Distance from Lakeview Resort</td>
+</tr>
+<tr>
+<td><strong>distance_to_lodge_m</strong></td>
+<td>Numeric</td>
+<td>800-5600 meters</td>
+<td>Distance from Clearwater Fishing Lodge</td>
+</tr>
+<tr>
+<td><strong>water_depth_m</strong></td>
+<td>Numeric</td>
+<td>7-11 meters</td>
+<td>Depth at monitoring location</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fish-surveys-csv-96-rows" tabindex="-1"><a class="observablehq-header-anchor" href="#fish-surveys-csv-96-rows">fish_surveys.csv (~96 rows)</a></h3>
+<p>Quarterly biological surveys conducted at each station (January, April, July, October).</p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+<th>Range/Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>date</strong></td>
+<td>Date</td>
+<td>Quarterly 2023-2024</td>
+<td>Date of survey</td>
+</tr>
+<tr>
+<td><strong>station_id</strong></td>
+<td>Categorical</td>
+<td>North, South, East, West</td>
+<td>Station where survey conducted</td>
+</tr>
+<tr>
+<td><strong>species</strong></td>
+<td>Categorical</td>
+<td>Trout, Bass, Carp</td>
+<td>Fish species</td>
+</tr>
+<tr>
+<td><strong>pollution_sensitivity</strong></td>
+<td>Categorical</td>
+<td>High, Medium, Low</td>
+<td>Sensitivity classification</td>
+</tr>
+<tr>
+<td><strong>count</strong></td>
+<td>Integer</td>
+<td>5-60+</td>
+<td>Number of fish caught in standardized survey</td>
+</tr>
+<tr>
+<td><strong>avg_length_cm</strong></td>
+<td>Numeric</td>
+<td>24-43 cm</td>
+<td>Average length (health indicator)</td>
+</tr>
+<tr>
+<td><strong>avg_weight_g</strong></td>
+<td>Numeric</td>
+<td>380-1300 g</td>
+<td>Average weight (health indicator)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="suspect-activities-csv-20-rows" tabindex="-1"><a class="observablehq-header-anchor" href="#suspect-activities-csv-20-rows">suspect_activities.csv (~20 rows)</a></h3>
+<p>Timeline of documented activities by each suspect.</p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Type</th>
+<th>Range/Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>date</strong></td>
+<td>Date</td>
+<td>2023-2024</td>
+<td>Date of activity</td>
+</tr>
+<tr>
+<td><strong>suspect</strong></td>
+<td>Categorical</td>
+<td>4 suspects</td>
+<td>Which suspect performed activity</td>
+</tr>
+<tr>
+<td><strong>activity_type</strong></td>
+<td>Categorical</td>
+<td>Various</td>
+<td>Type of activity (maintenance, construction, etc.)</td>
+</tr>
+<tr>
+<td><strong>intensity</strong></td>
+<td>Categorical</td>
+<td>Low, Medium, High</td>
+<td>Activity intensity</td>
+</tr>
+<tr>
+<td><strong>duration_days</strong></td>
+<td>Integer</td>
+<td>1-730 days</td>
+<td>How long activity lasted</td>
+</tr>
+<tr>
+<td><strong>notes</strong></td>
+<td>Text</td>
+<td>Various</td>
+<td>Additional context</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="hints" tabindex="-1"><a class="observablehq-header-anchor" href="#hints">Hints</a></h2>
+<p>Open these if you're floundering like a trout on clearwater lake, but I encourage you to explore on your own before reading:</p>
+<details>
+  <summary>Hint #1</summary>
+  <div style="padding: 20px; border: solid 1px; border-radius: 5px; font-size: 0.86rem;">
+  A recent study was published about species specific responses to heavy metal contamination in freshwater fish populations. Here's an image of the abstract and relevant chart: 
+  <img src="../_file/lab_4/hint/scientific_reference.8b222168.png">
+  </div>
+</details>
+<details>
+  <summary>Hint #2</summary>
+  <div style="padding: 20px; border: solid 1px; border-radius: 5px; font-size: 0.86rem;">
+  Look at fish populations at your worst station vs. other stations. Which species declined? Check the scientific paper - what do those mortality rates tell you about contamination levels?</div>
+</details>
+<details>
+  <summary>Hint #3</summary>
+  <div style="padding: 20px; border: solid 1px; border-radius: 5px; font-size: 0.86rem;">
+  You're looking for a pattern where ONE suspect matches ALL three dimensions:
+  <ul>
+    <li>Spatial (closest to worst contamination)</li>
+    <li>Temporal (their activities align with pollution spikes)</li>
+    <li>Biological (observed pollution levels match expected fish mortality)</li>
+    </ul>
+  </div>
+</details></main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="../lab_3/"><span>Dashboard</span></a><a rel="next" href="./"><span>Dashboard</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-12-19T01:24:09">Dec 19, 2025</a>.</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Lab 2: Subway Staffing | Interactive Data Visualization (Fall 2025)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="preload" as="style" href="../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="../_observablehq/client.609bff7d.js">
+<link rel="modulepreload" href="../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.d2092143.js">
+<link rel="modulepreload" href="../_observablehq/stdlib/inputs.a73cd26a.js">
+<link rel="modulepreload" href="../_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="../_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="../_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "../_observablehq/client.609bff7d.js";
+import {registerFile} from "../_observablehq/stdlib.d2092143.js";
+
+registerFile("./data/incidents.csv", {"name":"./data/incidents.csv","mimeType":"text/csv","path":"../_file/lab_2/data/incidents.1db59be0.csv","lastModified":1762194593510,"size":21748});
+registerFile("./data/local_events.csv", {"name":"./data/local_events.csv","mimeType":"text/csv","path":"../_file/lab_2/data/local_events.a44451a3.csv","lastModified":1762194593510,"size":2773});
+registerFile("./data/ridership.csv", {"name":"./data/ridership.csv","mimeType":"text/csv","path":"../_file/lab_2/data/ridership.996f7309.csv","lastModified":1762194593510,"size":66742});
+registerFile("./data/upcoming_events.csv", {"name":"./data/upcoming_events.csv","mimeType":"text/csv","path":"../_file/lab_2/data/upcoming_events.b21e21f3.csv","lastModified":1762194593510,"size":2569});
+
+define({id: "40b4a208", inputs: ["FileAttachment"], outputs: ["incidents","local_events","ridership","upcoming_events"], body: (FileAttachment) => {
+// Load all data files
+const incidents = FileAttachment("./data/incidents.csv").csv({typed: true});
+const local_events = FileAttachment("./data/local_events.csv").csv({typed: true});
+const ridership = FileAttachment("./data/ridership.csv").csv({typed: true});
+const upcoming_events = FileAttachment("./data/upcoming_events.csv").csv({typed: true});
+return {incidents,local_events,ridership,upcoming_events};
+}});
+
+define({id: "a2408c04", inputs: ["incidents","display"], body: async (incidents,display) => {
+display(await(
+// Display first 5 rows of incidents data
+incidents.slice(0, 5)
+))
+}});
+
+define({id: "45528cde", inputs: ["upcoming_events","display"], body: async (upcoming_events,display) => {
+display(await(
+// Display first 5 rows of upcoming_events data
+upcoming_events.slice(0, 5)
+))
+}});
+
+define({id: "40fbfa64", inputs: ["ridership","display"], body: async (ridership,display) => {
+display(await(
+ridership.slice(0,5)
+))
+}});
+
+define({id: "a3a52f7f", inputs: ["local_events","display"], body: async (local_events,display) => {
+display(await(
+local_events.slice(0,5)
+))
+}});
+
+define({id: "46e812b9", inputs: ["ridership","incidents"], outputs: ["ridership_incidents_combined","recordsWithIncidents"], body: (ridership,incidents) => {
+// Combine ridership data with incidents data
+const ridership_incidents_combined = ridership.map(ridershipRecord => {
+  // Convert ridership date to YYYY-MM-DD format for comparison
+  const ridershipDateStr = new Date(ridershipRecord.date).toISOString().split('T')[0];
+  
+  // Check if there's a matching incident for this date and station
+  const matchingIncident = incidents.find(incident => {
+    const incidentDateStr = new Date(incident.date).toISOString().split('T')[0];
+    return incidentDateStr === ridershipDateStr && incident.station === ridershipRecord.station;
+  });
+  
+  // Create combined record
+  return {
+    ...ridershipRecord,
+    "Incident Taking Place": matchingIncident ? 1 : 0,
+    incident_severity: matchingIncident ? matchingIncident.severity : null,
+    incident_response_time: matchingIncident ? matchingIncident.response_time_minutes : null,
+    incident_staffing: matchingIncident ? matchingIncident.staffing_count : null
+  };
+});
+
+console.log("=== DATA COMBINATION RESULTS ===");
+console.log("Total ridership records:", ridership.length);
+console.log("Total incident records:", incidents.length);
+console.log("Combined records:", ridership_incidents_combined.length);
+
+// Count records with incidents
+const recordsWithIncidents = ridership_incidents_combined.filter(record => record["Incident Taking Place"] === 1);
+console.log("Records with incidents:", recordsWithIncidents.length);
+
+ridership_incidents_combined
+return {ridership_incidents_combined,recordsWithIncidents};
+}});
+
+define({id: "5599061b", inputs: ["Inputs","ridership_incidents_combined","display"], body: async (Inputs,ridership_incidents_combined,display) => {
+display(await(
+// Display complete combined data table with all columns and all rows
+Inputs.table(ridership_incidents_combined)
+))
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Interactive Data Visualization (Fall 2025)</a></li>
+  </ol>
+  <details>
+    <summary>Lab 0: Getting Started</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_0/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_0/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 1: Prolific Pollinators</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_1/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_1/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 2: Subway Staffing</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="./">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open>
+    <summary>Lab 3: Mayoral Mystery</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_3/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_3/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open>
+    <summary>Lab 4: Clearwater Crisis</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_4/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_4/">Dashboard</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#data-combination-ridership-incidents">Data Combination: Ridership + Incidents</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h1 id="lab-2-data-loading-test" tabindex="-1"><a class="observablehq-header-anchor" href="#lab-2-data-loading-test">Lab 2: Data Loading Test</a></h1>
+<div class="observablehq observablehq--block"><!--:40b4a208:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:a2408c04:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:45528cde:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:40fbfa64:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:a3a52f7f:--></div>
+<h2 id="data-combination-ridership-incidents" tabindex="-1"><a class="observablehq-header-anchor" href="#data-combination-ridership-incidents">Data Combination: Ridership + Incidents</a></h2>
+<div class="observablehq observablehq--block"><!--:46e812b9:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:5599061b:--></div>
+</main>
+<footer id="observablehq-footer">
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-12-19T01:24:09">Dec 19, 2025</a>.</div>
+</footer>
+</div>
+</body>
+</html>

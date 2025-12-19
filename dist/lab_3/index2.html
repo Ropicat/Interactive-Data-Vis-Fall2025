@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Interactive Data Visualization (Fall 2025)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="preload" as="style" href="../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="../_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="../_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="../_observablehq/client.609bff7d.js">
+<link rel="modulepreload" href="../_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="../_observablehq/stdlib.d2092143.js">
+<link rel="modulepreload" href="../_npm/d3@7.9.0/e780feca.js">
+<link rel="modulepreload" href="../_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="../_observablehq/stdlib/inputs.a73cd26a.js">
+<link rel="modulepreload" href="../_npm/@observablehq/plot@0.6.17/d761ef9b.js">
+<link rel="modulepreload" href="../_npm/topojson-client@3.1.0/edd9ee95.js">
+<link rel="modulepreload" href="../_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="../_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="../_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="../_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="../_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="../_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="../_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="../_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="../_npm/d3-delaunay@6.0.4/5ced1d52.js">
+<link rel="modulepreload" href="../_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="../_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="../_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="../_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="../_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="../_npm/d3-format@3.1.0/86074ef6.js">
+<link rel="modulepreload" href="../_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="../_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="../_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="../_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="../_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="../_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="../_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="../_npm/d3-scale@4.0.2/843b6a76.js">
+<link rel="modulepreload" href="../_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="../_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="../_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="../_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="../_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="../_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="../_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="../_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="../_npm/interval-tree-1d@1.0.4/53fe8176.js">
+<link rel="modulepreload" href="../_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="../_npm/delaunator@5.0.1/02d43215.js">
+<link rel="modulepreload" href="../_npm/binary-search-bounds@2.0.5/cbf6ba23.js">
+<link rel="modulepreload" href="../_npm/robust-predicates@3.0.2/aa00730b.js">
+<link rel="icon" href="../_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "../_observablehq/client.609bff7d.js";
+import {registerFile} from "../_observablehq/stdlib.d2092143.js";
+
+registerFile("./data/campaign_events.csv", {"name":"./data/campaign_events.csv","mimeType":"text/csv","path":"../_file/lab_3/data/campaign_events.993dfb9f.csv","lastModified":1763586436858,"size":8235});
+registerFile("./data/election_results.csv", {"name":"./data/election_results.csv","mimeType":"text/csv","path":"../_file/lab_3/data/election_results.a73e30be.csv","lastModified":1763586436858,"size":2888});
+registerFile("./data/nyc.json", {"name":"./data/nyc.json","mimeType":"application/json","path":"../_file/lab_3/data/nyc.cf31231f.json","lastModified":1763586436861,"size":132766});
+registerFile("./data/survey_responses.csv", {"name":"./data/survey_responses.csv","mimeType":"text/csv","path":"../_file/lab_3/data/survey_responses.1bf00d32.csv","lastModified":1763586436862,"size":6401});
+
+define({id: "6ba0c5b9", inputs: ["FileAttachment"], outputs: ["nyc","results","survey","events"], body: async (FileAttachment) => {
+const nyc = await FileAttachment("./data/nyc.json").json();
+const results = await FileAttachment("./data/election_results.csv").csv({ typed: true });
+const survey = await FileAttachment("./data/survey_responses.csv").csv({ typed: true });
+const events = await FileAttachment("./data/campaign_events.csv").csv({ typed: true });
+return {nyc,results,survey,events};
+}});
+
+define({id: "18dda6c8", inputs: ["display","nyc","results","survey","events"], body: (display,nyc,results,survey,events) => {
+// NYC geoJSON data
+display(nyc)
+// Campaign data (first 10 objects)
+display(results.slice(0,10))
+display(survey.slice(0,10))
+display(events.slice(0,10))
+}});
+
+define({id: "e24f56cc", inputs: ["results"], outputs: ["resultsWithWinOrLose"], body: (results) => {
+const resultsWithWinOrLose = results.map(d => ({
+  ...d,
+  win_or_lose: d.votes_candidate > d.votes_opponent ? 1 : 0
+}))
+return {resultsWithWinOrLose};
+}});
+
+define({id: "84287dbf", inputs: ["Inputs","resultsWithWinOrLose","display"], body: async (Inputs,resultsWithWinOrLose,display) => {
+display(await(
+Inputs.table(resultsWithWinOrLose)
+))
+}});
+
+define({id: "494b84e3", inputs: ["topojson","nyc","display"], outputs: ["districts"], body: (topojson,nyc,display) => {
+const districts = topojson.feature(nyc, nyc.objects.districts)
+
+// Optional: display districts for inspection
+display(districts)
+return {districts};
+}});
+
+define({id: "ef46a02f", inputs: ["Inputs","districts","display"], body: async (Inputs,districts,display) => {
+display(await(
+Inputs.table(districts.features.map(d => d.properties))
+))
+}});
+
+define({id: "86dde585", inputs: ["resultsWithWinOrLose","districts"], outputs: ["winOrLoseLookup","mergedDistricts"], body: (resultsWithWinOrLose,districts) => {
+// Create a lookup for win_or_lose by boro_cd
+const winOrLoseLookup = Object.fromEntries(resultsWithWinOrLose.map(d => [d.boro_cd, d.win_or_lose]))
+
+// Merge win_or_lose into each district feature using BoroCD
+// Winners and Losers by District
+
+const mergedDistricts = {
+  ...districts,
+  features: districts.features.map(f => ({
+    ...f,
+    properties: {
+      ...f.properties,
+      win_or_lose: winOrLoseLookup[f.properties.BoroCD] ?? null
+    }
+  }))
+}
+return {winOrLoseLookup,mergedDistricts};
+}});
+
+define({id: "06f793ec", inputs: ["Plot","mergedDistricts","display"], body: async (Plot,mergedDistricts,display) => {
+display(await(
+// District map colored by win_or_lose
+Plot.plot({
+  title: "WINNERS AND LOSERS BY DISTRICT: BLUE OUT CANDIDATES WON",
+  projection: {
+    domain: mergedDistricts,
+    type: "mercator"
+  },
+  marks: [
+    Plot.geo(mergedDistricts.features, {
+      fill: d => d.properties.win_or_lose === 1 ? "#2563eb" : "#e11d48",
+      fillOpacity: 0.7,
+      stroke: "#222",
+      strokeWidth: 1
+    })
+  ]
+})
+))
+}});
+
+define({id: "3e040558", inputs: ["mergedDistricts","display"], body: async (mergedDistricts,display) => {
+display(await(
+// Display merged GeoJSON as JSON
+mergedDistricts
+))
+}});
+
+define({id: "f55d5cfd", inputs: ["resultsWithWinOrLose","display","Plot"], outputs: ["winOrLoseCounts"], body: (resultsWithWinOrLose,display,Plot) => {
+// Bar chart for win_or_lose counts
+const winOrLoseCounts = [
+  {label: "Win (1)", value: resultsWithWinOrLose.filter(d => d.win_or_lose === 1).length},
+  {label: "Lose (0)", value: resultsWithWinOrLose.filter(d => d.win_or_lose === 0).length}
+];
+
+display(Plot.plot({
+  title: "HOW DID WE DO? (BLUE COLOR MEANS WE WON)",
+  marks: [
+    Plot.barY(winOrLoseCounts, {
+      x: "label",
+      y: "value",
+      fill: "label"
+    })
+  ],
+  color: {
+    domain: ["Win (1)", "Lose (0)"],
+    range: ["#2563eb", "#e11d48"]
+  },
+  width: 300,
+  height: 300
+}))
+return {winOrLoseCounts};
+}});
+
+define({id: "c1bbdf1e", inputs: ["resultsWithWinOrLose"], outputs: ["lowHoursData","highHoursData","lowHoursCounts","highHoursCounts"], body: (resultsWithWinOrLose) => {
+// Two side-by-side charts: win_or_lose counts filtered by candidate_hours_spent
+const lowHoursData = resultsWithWinOrLose.filter(d => d.candidate_hours_spent <= 16.5);
+const highHoursData = resultsWithWinOrLose.filter(d => d.candidate_hours_spent > 16.5);
+
+const lowHoursCounts = [
+  {label: "Win (1)", value: lowHoursData.filter(d => d.win_or_lose === 1).length},
+  {label: "Lose (0)", value: lowHoursData.filter(d => d.win_or_lose === 0).length}
+];
+
+const highHoursCounts = [
+  {label: "Win (1)", value: highHoursData.filter(d => d.win_or_lose === 1).length},
+  {label: "Lose (0)", value: highHoursData.filter(d => d.win_or_lose === 0).length}
+];
+return {lowHoursData,highHoursData,lowHoursCounts,highHoursCounts};
+}});
+
+define({id: "b40e86a5", inputs: ["display","html","Plot","lowHoursCounts"], body: (display,html,Plot,lowHoursCounts) => {
+// Chart 1: Hours <= 16.5
+display(html`<h3>Hours ≤ 16.5</h3>`)
+display(Plot.plot({
+  title: "CANDIDATE SPENDING TIME IN DISTRICT COUNTS A LOT TOWARD WINNING",
+  marks: [
+    Plot.barY(lowHoursCounts, {
+      x: "label",
+      y: "value",
+      fill: "label"
+    })
+  ],
+  color: {
+    domain: ["Win (1)", "Lose (0)"],
+    range: ["#2563eb", "#e11d48"]
+  },
+  width: 300,
+  height: 300
+}))
+}});
+
+define({id: "19b6cd05", inputs: ["display","html","Plot","highHoursCounts"], body: (display,html,Plot,highHoursCounts) => {
+// Chart 2: Hours > 16.5
+display(html`<h3>Hours > 16.5</h3>`)
+display(Plot.plot({
+  title: "IF YOU SPENT LESS THAN 16.5 HOURS CHANCE OF WINNING IN THE DISTRICT DIMINISHED DRAMATICALLY",
+  marks: [
+    Plot.barY(highHoursCounts, {
+      x: "label",
+      y: "value",
+      fill: "label"
+    })
+  ],
+  color: {
+    domain: ["Win (1)", "Lose (0)"],
+    range: ["#2563eb", "#e11d48"]
+  },
+  width: 300,
+  height: 300
+}))
+}});
+
+define({id: "ba2f3683", inputs: ["resultsWithWinOrLose","d3"], outputs: ["winData","loseData","winByIncome","winIncomeArray","loseByIncome","loseIncomeArray"], body: (resultsWithWinOrLose,d3) => {
+// Stacked bar chart: win_or_lose grouped by income_category
+const winData = resultsWithWinOrLose.filter(d => d.win_or_lose === 1);
+const loseData = resultsWithWinOrLose.filter(d => d.win_or_lose === 0);
+
+// Count by income_category for wins
+const winByIncome = d3.rollup(winData, v => v.length, d => d.income_category);
+const winIncomeArray = Array.from(winByIncome, ([category, count]) => ({category, count}));
+
+// Count by income_category for losses
+const loseByIncome = d3.rollup(loseData, v => v.length, d => d.income_category);
+const loseIncomeArray = Array.from(loseByIncome, ([category, count]) => ({category, count}));
+return {winData,loseData,winByIncome,winIncomeArray,loseByIncome,loseIncomeArray};
+}});
+
+define({id: "863bfaff", inputs: ["display","html","Plot","winIncomeArray"], body: (display,html,Plot,winIncomeArray) => {
+// Chart: Wins (1) stacked by income_category
+display(html`<h3>Win (1) by Income Category</h3>`)
+display(Plot.plot({
+  title: "ALL LOW TO MIDDLE INCOME DISTRICT VOTED FOR YOUR PARTY (?)",
+  marks: [
+    Plot.barY(winIncomeArray, {
+      x: "category",
+      y: "count",
+      fill: "category"
+    })
+  ],
+  x: {label: "Income Category"},
+  y: {label: "Count"},
+  color: {legend: true},
+  width: 400,
+  height: 300
+}))
+}});
+
+define({id: "ec12e4ee", inputs: ["display","html","Plot","loseIncomeArray"], body: (display,html,Plot,loseIncomeArray) => {
+// Chart: Losses (0) stacked by income_category
+display(html`<h3>Lose (0) by Income Category</h3>`)
+display(Plot.plot({
+  title: "THE HIGH-INCOME DISTRICT DID NOT VOTE FOR YOU--OR DID YOU SLACK OFF BY NOT VISITING THEM AS MUCH??",
+  marks: [
+    Plot.barY(loseIncomeArray, {
+      x: "category",
+      y: "count",
+      fill: "#FF8C00"
+    })
+  ],
+  x: {label: "Income Category"},
+  y: {label: "Count"},
+  width: 400,
+  height: 300
+}))
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="../">Interactive Data Visualization (Fall 2025)</a></li>
+  </ol>
+  <details>
+    <summary>Lab 0: Getting Started</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_0/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_0/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 1: Prolific Pollinators</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_1/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_1/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details>
+    <summary>Lab 2: Subway Staffing</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_2/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_2/">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open>
+    <summary>Lab 3: Mayoral Mystery</summary>
+    <ol>
+    <li class="observablehq-link"><a href="./readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="./">Dashboard</a></li>
+    </ol>
+  </details>
+  <details open>
+    <summary>Lab 4: Clearwater Crisis</summary>
+    <ol>
+    <li class="observablehq-link"><a href="../lab_4/readme">Instructions</a></li>
+    <li class="observablehq-link"><a href="../lab_4/">Dashboard</a></li>
+    </ol>
+  </details>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#title-lab-3-mayoral-mystery-toc-false">title: &quot;Lab 3: Mayoral Mystery&quot;
+toc: false</a></li>
+<li class="observablehq-secondary-link"><a href="#summary">Summary</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<h2 id="title-lab-3-mayoral-mystery-toc-false" tabindex="-1"><a class="observablehq-header-anchor" href="#title-lab-3-mayoral-mystery-toc-false">title: "Lab 3: Mayoral Mystery"
+toc: false</a></h2>
+<p>This page is where you can iterate. Follow the lab instructions in the <a href="./README.md">readme.md</a>.</p>
+<h2 id="summary" tabindex="-1"><a class="observablehq-header-anchor" href="#summary">Summary</a></h2>
+<p>In addition to this course, I am also taking a data mining course, and we just went through a decision tree methodology, so I used it for the Mayoral Mystery. I understand this exercise is based on a simulated data, but I still find it fascinating that the dilemma of the candidates in actual elections can be observed: the decision tree analysis shows that 1. if you spend lots of time in the district, you win, 2. for this particular party of 'blue' the voters in low to medium median income will vote for you, but not the voters in the high income district. But the question here is you did not spend a lot of time in the high income district because you thought they would not vote for you...but in reality NOT SPENDING ENOUGH TIME may be the real reason you lost!</p>
+<!-- Import Data -->
+<div class="observablehq observablehq--block"><!--:6ba0c5b9:--></div>
+<div class="observablehq observablehq--block"><!--:18dda6c8:--></div>
+<p>// Observable Framework cell: Add 'win_or_lose' column</p>
+<div class="observablehq observablehq--block"><!--:e24f56cc:--></div>
+<p>// Observable Framework cell: View table with new column</p>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:84287dbf:--></div>
+<p>// The nyc file is saved in data as a topoJSON instead of a geoJSON. Thats primarily for size reasons -- it saves us 3MB of data. For Plot to render it, we have to convert it back to its geoJSON feature collection.</p>
+<div class="observablehq observablehq--block"><!--:494b84e3:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:ef46a02f:--></div>
+<p>// Merge 'resultsWithWinOrLose' csv data into 'districts' GeoJSON using boro_cd and BoroCD columns</p>
+<div class="observablehq observablehq--block"><!--:86dde585:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:06f793ec:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:3e040558:--></div>
+<h3 id="decision-tree-voting-conditions-for-winners" tabindex="-1"><a class="observablehq-header-anchor" href="#decision-tree-voting-conditions-for-winners">Decision Tree: Voting Conditions for Winners</a></h3>
+<img src="../_file/lab_3/data/voting_decision.94b47598.png" alt="Decision Tree" width="1600">
+<div class="observablehq observablehq--block"><!--:f55d5cfd:--></div>
+<div class="observablehq observablehq--block"><!--:c1bbdf1e:--></div>
+<div class="observablehq observablehq--block"><!--:b40e86a5:--></div>
+<div class="observablehq observablehq--block"><!--:19b6cd05:--></div>
+<div class="observablehq observablehq--block"><!--:ba2f3683:--></div>
+<div class="observablehq observablehq--block"><!--:863bfaff:--></div>
+<div class="observablehq observablehq--block"><!--:ec12e4ee:--></div>
+</main>
+<footer id="observablehq-footer">
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-12-19T01:24:09">Dec 19, 2025</a>.</div>
+</footer>
+</div>
+</body>
+</html>
